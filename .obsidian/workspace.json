@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "e8d22de55b3e6c08",
+        "id": "a4917bbcd2278cc9",
         "type": "tabs",
         "children": [
           {
-            "id": "d937110d94c08408",
+            "id": "a06752f61d3fc9a0",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "98 - Meta/Templates/Travel/Trip Template.md",
-                "mode": "source",
+                "file": "_scripts/Keychain Test.md",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Trip Template"
+              "title": "Keychain Test"
             }
           }
         ]
@@ -188,24 +188,35 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "d937110d94c08408",
+  "active": "a06752f61d3fc9a0",
   "lastOpenFiles": [
-    "_scripts/test.base",
+    "_scripts/keychain-test-output.json",
+    "_scripts/POC Places.md",
+    "_scripts/Keychain Test.md",
+    "98 - Meta/Templates/Travel/_POC Keychain Test.md",
+    "98 - Meta/System/sysSecrets.js",
+    "_scripts/Meta Bind Test.md",
+    "06 - Resources/Google Places/Location added on 2026-10-26T16-06105.09830225078454.md",
+    "_scripts/api-test-output-3/3-wiki-search.json",
+    "_scripts/api-test-output-3/2-wiki-summary.json",
+    "_scripts/api-test-output-3/1-restcountries.json",
+    "_scripts/api-test-output-3",
+    "_scripts/api-test-3.ps1",
+    "06 - Resources/Google Places/Location added on 2026-10-26T16-06.md",
+    "06 - Resources/Google Places/Location added on 2026-10-26T16-05.md",
+    "98 - Meta/Templates/Travel/Map View Place.md",
     "_scripts/Callout Test.md",
-    "_scripts/places-test-output-2/4-reverse-geocode.json",
-    "_scripts/places-test-output-2/3-containing-places.json",
-    "_scripts/places-test-output-2/2-nearby-localities.json",
-    "_scripts/places-test-output-2/1-locale-searches.json",
-    "_scripts/places-test-output-2",
-    "_scripts/places-test-2.ps1",
-    "_scripts/places-test-output/summary.csv",
-    "_scripts/places-test-output/Bukchon_Hanok_Village.json",
-    "_scripts/places-test-output/Shibuya_Crossing.json",
-    "_scripts/places-test-output/Mount_Fuji.json",
+    "98 - Meta/Templates/Travel/_POC Places Inbox.md",
+    "98 - Meta/System/sysGeo.js",
+    "98 - Meta/System/sysPlugins.js",
+    "98 - Meta/System/sysHttp.js",
+    "Untitled.md",
+    "Untitled 1.md",
+    "98 - Meta/Templates/Travel/Trip Template.md",
+    "_scripts/test.base",
     "README.md",
     "05 - Areas/Travel/Travel.md",
     "Bases card redirect test.md",
-    "98 - Meta/Templates/Travel/Trip Template.md",
     "05 - Areas/Travel/Trips/Test123/Test123.md",
     "98 - Meta/System/Travel/_config.md"
   ]

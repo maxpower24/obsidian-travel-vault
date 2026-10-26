@@ -66,12 +66,30 @@ module.exports = (tp) => {
         await tp.app.fileManager.renameFile(file, newPath);
     }
 
+    /**
+     * Return the Markdown notes directly inside a folder (not recursive).
+     * Returns an empty array if the folder doesn't exist.
+     *
+     * @param {string} folderPath - Vault-relative folder path
+     * @returns {TFile[]}
+     */
+    function getNotesInFolder(folderPath) {
+        const folder = tp.app.vault.getAbstractFileByPath(folderPath);
+
+        if (!folder || folder.children === undefined) {
+            return [];
+        }
+
+        return folder.children.filter((child) => child.children === undefined && child.extension === "md");
+    }
+
     return {
         folderExists,
         noteExists,
         createFolder,
         createNote,
         moveNote,
+        getNotesInFolder,
     };
 
 };

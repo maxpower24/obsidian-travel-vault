@@ -1,1 +1,7 @@
-{}
+{
+  "enabledCssSnippets": [
+    "columns-test",
+    "full-width",
+    "mb-seamless-test"
+  ]
+}

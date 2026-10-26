@@ -11,6 +11,8 @@ module.exports = (tp) => {
     const fs       = tp.user.sysFs(tp);
     const notice   = tp.user.sysNotice(tp);
     const str      = tp.user.sysString(tp);
+    const fm       = tp.user.sysFrontmatter(tp);
+    const geo      = tp.user.sysGeo(tp);
 
     /**
      * Create a new trip.
@@ -74,8 +76,71 @@ module.exports = (tp) => {
         notice.show(`Trip "${tripName}" created.`);
     }
 
+    /**
+     * PROOF OF CONCEPT — temporary, to be replaced by the real place import.
+     *
+     * For every note in the Places Inbox folder:
+     * 1. Read its Map View `location`.
+     * 2. Reverse geocode it with Google (key read from Map View's settings).
+     * 3. Write country / region / city / area into its frontmatter.
+     *
+     * Notes are not moved or renamed. Failures are reported per note and skipped.
+     *
+     * @param {string} configPath - Vault-relative path to the travel config note
+     */
+    async function pocPlacesInbox(configPath) {
+
+        const travelConfig = config.loadConfig(configPath);
+        const inboxFolder  = travelConfig["Places Inbox"];
+
+        if (!inboxFolder) {
+            throw new Error(`travelOrchestrator: "Places Inbox" is not set in ${configPath}.`);
+        }
+
+        const notes = fs.getNotesInFolder(inboxFolder);
+
+        if (notes.length === 0) {
+            notice.show(`No notes found in "${inboxFolder}".`);
+            return;
+        }
+
+        let processed = 0;
+        let failed    = 0;
+
+        for (const file of notes) {
+            try {
+                const data   = fm.getFrontmatter(file.path);
+                const coords = geo.parseLatLng(data ? data.location : null);
+
+                if (!coords) {
+                    throw new Error("no valid `location` in frontmatter");
+                }
+
+                const results = await geo.reverseGeocode(coords.lat, coords.lng);
+                const areas   = geo.parseAdminAreas(results);
+
+                await fm.setFields(file.path, {
+                    country:      areas.country,
+                    country_code: areas.countryCode,
+                    region:       areas.region,
+                    city:         areas.city,
+                    area:         areas.area,
+                });
+
+                processed++;
+            } catch (e) {
+                failed++;
+                console.error(`travelOrchestrator: failed on ${file.path}`, e);
+                notice.show(`Failed: ${file.basename} (${e.message})`, 8000);
+            }
+        }
+
+        notice.show(`Places POC: ${processed} processed, ${failed} failed.`);
+    }
+
     return {
         createNewTrip,
+        pocPlacesInbox,
     };
 
 };
