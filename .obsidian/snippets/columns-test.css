@@ -1,0 +1,22 @@
+/* columns-test.css — TEST snippet: 3-column layout from nested callouts.
+   Usage:  > [!columns]  containing one nested callout per column.          */
+
+.callout[data-callout="columns"] {
+  background: transparent;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+}
+.callout[data-callout="columns"] > .callout-title { display: none; }
+
+.callout[data-callout="columns"] > .callout-content {
+  display: grid;
+  grid-template-columns: 1fr 2.5fr 1fr;   /* left | centre | right */
+  gap: 1rem;
+  align-items: start;
+}
+.callout[data-callout="columns"] > .callout-content > * { margin: 0; min-width: 0; }
+
+/* Phone: single column, order centre -> left -> right */
+.is-phone .callout[data-callout="columns"] > .callout-content { grid-template-columns: 1fr; }
+.is-phone .callout[data-callout="columns"] > .callout-content > .callout:nth-of-type(2) { order: -1; }

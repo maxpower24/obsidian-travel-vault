@@ -42,5 +42,6 @@ Now you can begin creating your first trip! Make sure to give it a unique name
 - Jetbrains MonoFont
 
 ## Settings changes:
-- Templater folder
-- Templater hotkeys - add templates used in buttons
+- All settings except for things like API keys should be included in the .obsidian files.
+- Rename \obsidian-travel-vault\.obsidian\plugins\obsidian-map-view\data.json.example to data.json
+- Update google places API key in settings

@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "README.md",
+                "file": "98 - Meta/Templates/Travel/Trip Template.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "README"
+              "title": "Trip Template"
             }
           }
         ]
@@ -41,7 +41,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
               "title": "Files"
@@ -188,21 +190,23 @@
   },
   "active": "d937110d94c08408",
   "lastOpenFiles": [
-    "LICENSE",
-    "98 - Meta/Templates/Travel/Trip Template.md",
-    "98 - Meta/System/Travel/_config.md",
-    "New Text Document.txt",
-    "05 - Areas/Travel/Travel.md",
-    "Untitled.md",
+    "_scripts/test.base",
+    "_scripts/Callout Test.md",
+    "_scripts/places-test-output-2/4-reverse-geocode.json",
+    "_scripts/places-test-output-2/3-containing-places.json",
+    "_scripts/places-test-output-2/2-nearby-localities.json",
+    "_scripts/places-test-output-2/1-locale-searches.json",
+    "_scripts/places-test-output-2",
+    "_scripts/places-test-2.ps1",
+    "_scripts/places-test-output/summary.csv",
+    "_scripts/places-test-output/Bukchon_Hanok_Village.json",
+    "_scripts/places-test-output/Shibuya_Crossing.json",
+    "_scripts/places-test-output/Mount_Fuji.json",
     "README.md",
-    "98 - Meta/System/Travel/travelOrchestrator.js",
-    "98 - Meta/System/cfgUtils.js",
-    "98 - Meta/Templates/Travel",
-    "98 - Meta/Templates",
-    "98 - Meta/System/Travel",
-    "98 - Meta/System",
-    "98 - Meta/Databases/Travel",
-    "98 - Meta/Databases",
-    "06 - Resources/Google Places"
+    "05 - Areas/Travel/Travel.md",
+    "Bases card redirect test.md",
+    "98 - Meta/Templates/Travel/Trip Template.md",
+    "05 - Areas/Travel/Trips/Test123/Test123.md",
+    "98 - Meta/System/Travel/_config.md"
   ]
 }
