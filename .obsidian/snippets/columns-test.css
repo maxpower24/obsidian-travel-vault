@@ -1,22 +1,141 @@
-/* columns-test.css — TEST snippet: 3-column layout from nested callouts.
-   Usage:  > [!columns]  containing one nested callout per column.          */
+/* columns-test.css — TEST v2: flexible callout columns
+   ------------------------------------------------------------------
+   Container:   > [!columns]            equal widths (any number of columns)
+                > [!columns|1-2.5-1]    named ratio (see list below)
+                > [!columns|1-1 gap-l]  ratio + options, space-separated
+   Columns:     > > [!col]              invisible: no title, icon, background or border
+                > > [!col|box]          plain bordered box, no title/icon
+                > > [!note] Title       any normal callout keeps its usual look
+   Ratios:      1-1, 1-1-1, 1-2, 2-1, 1-2-1, 1-2.5-1, 2-1-1, 1-1-2
+   Options:     gap-s, gap-l, stretch (equal-height columns), centre-first (phone order)
+   ------------------------------------------------------------------ */
 
+/* ---- container ---- */
 .callout[data-callout="columns"] {
+  --columns-gap: 1rem;
   background: transparent;
   border: none;
-  padding: 0;
   box-shadow: none;
+  padding: 0;
 }
 .callout[data-callout="columns"] > .callout-title { display: none; }
-
 .callout[data-callout="columns"] > .callout-content {
   display: grid;
-  grid-template-columns: 1fr 2.5fr 1fr;   /* left | centre | right */
-  gap: 1rem;
+  gap: var(--columns-gap);
   align-items: start;
+  grid-auto-flow: column;              /* default: equal columns, any count */
+  grid-auto-columns: minmax(0, 1fr);
+  padding: 0;
 }
 .callout[data-callout="columns"] > .callout-content > * { margin: 0; min-width: 0; }
 
-/* Phone: single column, order centre -> left -> right */
-.is-phone .callout[data-callout="columns"] > .callout-content { grid-template-columns: 1fr; }
-.is-phone .callout[data-callout="columns"] > .callout-content > .callout:nth-of-type(2) { order: -1; }
+/* ---- ratios ---- */
+.callout[data-callout="columns"][data-callout-metadata] > .callout-content { grid-auto-flow: row; }
+.callout[data-callout="columns"][data-callout-metadata~="1-1"]     > .callout-content { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.callout[data-callout="columns"][data-callout-metadata~="1-1-1"]   > .callout-content { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.callout[data-callout="columns"][data-callout-metadata~="1-2"]     > .callout-content { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); }
+.callout[data-callout="columns"][data-callout-metadata~="2-1"]     > .callout-content { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
+.callout[data-callout="columns"][data-callout-metadata~="1-2-1"]   > .callout-content { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr); }
+.callout[data-callout="columns"][data-callout-metadata~="1-2.5-1"] > .callout-content { grid-template-columns: minmax(0, 1fr) minmax(0, 2.5fr) minmax(0, 1fr); }
+.callout[data-callout="columns"][data-callout-metadata~="2-1-1"]   > .callout-content { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr); }
+.callout[data-callout="columns"][data-callout-metadata~="1-1-2"]   > .callout-content { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 2fr); }
+
+/* ---- options ---- */
+.callout[data-callout="columns"][data-callout-metadata~="gap-s"] { --columns-gap: 0.5rem; }
+.callout[data-callout="columns"][data-callout-metadata~="gap-l"] { --columns-gap: 2rem; }
+.callout[data-callout="columns"][data-callout-metadata~="stretch"] > .callout-content { align-items: stretch; }
+
+/* ---- phone: stack everything ---- */
+.is-phone .callout[data-callout="columns"] > .callout-content {
+  grid-template-columns: minmax(0, 1fr) !important;
+  grid-auto-flow: row;
+}
+.is-phone .callout[data-callout="columns"][data-callout-metadata~="centre-first"] > .callout-content > .callout:nth-of-type(2) { order: -1; }
+
+/* ---- column cells ---- */
+.callout[data-callout="col"] {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+.callout[data-callout="col"] > .callout-title { display: none; }
+.callout[data-callout="col"] > .callout-content { padding: 0; }
+.callout[data-callout="col"] > .callout-content > :first-child { margin-top: 0; }
+
+.callout[data-callout="col"][data-callout-metadata~="box"] {
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-m);
+  padding: var(--size-4-3);
+}
+
+/* ---- v3 additions ---- */
+/* Tidy spacing inside invisible/boxed columns: no stray top/bottom margins */
+.callout[data-callout="col"] > .callout-content > :first-child { margin-top: 0; }
+.callout[data-callout="col"] > .callout-content > :last-child  { margin-bottom: 0; }
+.callout[data-callout="col"] .block-language-dataviewjs > :first-child,
+.callout[data-callout="col"] .block-language-dataviewjs > div > :first-child { margin-top: 0; }
+.callout[data-callout="col"] .block-language-dataviewjs > :last-child,
+.callout[data-callout="col"] .block-language-dataviewjs > div > :last-child { margin-bottom: 0; }
+.callout[data-callout="col"] .block-language-dataviewjs p { margin: 0; }
+
+/* fill: a column whose last block grows to use the column's full height
+   (use with a container that has the `stretch` option) */
+.callout[data-callout="col"][data-callout-metadata~="fill"] {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.callout[data-callout="col"][data-callout-metadata~="fill"] > .callout-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.callout[data-callout="col"][data-callout-metadata~="fill"] > .callout-content > :last-child {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.callout[data-callout="col"][data-callout-metadata~="fill"] > .callout-content > :last-child .mb-input-wrapper,
+.callout[data-callout="col"][data-callout-metadata~="fill"] > .callout-content > :last-child .mb-editor-input {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* fill v2: if the column contains a Meta Bind editor, that block is the one that grows
+   (instead of the last block), so other blocks can sit below it */
+.callout[data-callout="col"][data-callout-metadata~="fill"] > .callout-content:has(.mb-editor-input) > :last-child:not(:has(.mb-editor-input)) { flex: 0 0 auto; display: block; }
+.callout[data-callout="col"][data-callout-metadata~="fill"] > .callout-content > :has(.mb-editor-input) {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.callout[data-callout="col"][data-callout-metadata~="fill"] > .callout-content > :has(.mb-editor-input) .mb-input-wrapper,
+.callout[data-callout="col"][data-callout-metadata~="fill"] > .callout-content > :has(.mb-editor-input) .mb-editor-input {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Box spacing v2: stack contents with a small gap and no stray margins
+   (headers, Dataview output and Meta Bind blocks all add their own margins otherwise) */
+.callout[data-callout="col"][data-callout-metadata~="box"] > .callout-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-4-1);
+}
+.callout[data-callout="col"][data-callout-metadata~="box"] > .callout-content > *,
+.callout[data-callout="col"][data-callout-metadata~="box"] > .callout-content p,
+.callout[data-callout="col"][data-callout-metadata~="box"] .block-language-dataviewjs,
+.callout[data-callout="col"][data-callout-metadata~="box"] .block-language-dataviewjs > *,
+.callout[data-callout="col"][data-callout-metadata~="box"] .block-language-dataviewjs div { margin: 0; }
+
+/* Box spacing v3: remove any padding/gap the callout or its content adds,
+   hide empty helper elements, and zero padding inside Dataview output */
+.callout[data-callout="col"] { gap: 0; }
+.callout[data-callout="col"][data-callout-metadata~="box"] > .callout-content { padding: 0; margin: 0; }
+.callout[data-callout="col"][data-callout-metadata~="box"] > .callout-content > :empty,
+.callout[data-callout="col"][data-callout-metadata~="box"] .block-language-dataviewjs :empty:not(br):not(img):not(input):not(textarea) { display: none; }
+.callout[data-callout="col"][data-callout-metadata~="box"] .block-language-dataviewjs,
+.callout[data-callout="col"][data-callout-metadata~="box"] .block-language-dataviewjs * { padding-top: 0; padding-bottom: 0; }

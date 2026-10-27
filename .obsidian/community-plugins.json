@@ -4,5 +4,7 @@
   "obsidian-map-view",
   "buttons",
   "templater-obsidian",
-  "obsidian-meta-bind-plugin"
+  "obsidian-meta-bind-plugin",
+  "dataview",
+  "pretty-properties"
 ]

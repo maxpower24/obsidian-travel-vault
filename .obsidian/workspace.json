@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "a4917bbcd2278cc9",
+        "id": "063e73cea1827b67",
         "type": "tabs",
         "children": [
           {
-            "id": "a06752f61d3fc9a0",
+            "id": "1f5772bfea1dd119",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_scripts/Keychain Test.md",
+                "file": "_scripts/pilot/Japan.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Keychain Test"
+              "title": "Japan"
             }
           }
         ]
@@ -55,7 +55,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "[\"Type\"]",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -96,7 +96,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "98 - Meta/Templates/Travel/Trip Template.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -106,7 +105,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Trip Template"
+              "title": "Backlinks"
             }
           },
           {
@@ -167,12 +166,12 @@
               "title": "Outline of Trip Template"
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -188,36 +187,52 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "a06752f61d3fc9a0",
+  "active": "64d4e1d14c733ffd",
   "lastOpenFiles": [
-    "_scripts/keychain-test-output.json",
-    "_scripts/POC Places.md",
-    "_scripts/Keychain Test.md",
-    "98 - Meta/Templates/Travel/_POC Keychain Test.md",
-    "98 - Meta/System/sysSecrets.js",
+    "_scripts/pilot/Japan.md",
+    "_scripts/Pilot Country.md",
+    "_scripts/Holiday Test.md",
+    "_scripts/holiday-ics-test-output.json",
+    "98 - Meta/Templates/Travel/_POC Holiday ICS Test.md",
+    "_scripts/holiday-test-output.json",
+    "98 - Meta/Templates/Travel/_POC Holiday Test.md",
     "_scripts/Meta Bind Test.md",
-    "06 - Resources/Google Places/Location added on 2026-10-26T16-06105.09830225078454.md",
-    "_scripts/api-test-output-3/3-wiki-search.json",
-    "_scripts/api-test-output-3/2-wiki-summary.json",
-    "_scripts/api-test-output-3/1-restcountries.json",
-    "_scripts/api-test-output-3",
-    "_scripts/api-test-3.ps1",
-    "06 - Resources/Google Places/Location added on 2026-10-26T16-06.md",
-    "06 - Resources/Google Places/Location added on 2026-10-26T16-05.md",
-    "98 - Meta/Templates/Travel/Map View Place.md",
-    "_scripts/Callout Test.md",
-    "98 - Meta/Templates/Travel/_POC Places Inbox.md",
-    "98 - Meta/System/sysGeo.js",
-    "98 - Meta/System/sysPlugins.js",
-    "98 - Meta/System/sysHttp.js",
     "Untitled.md",
-    "Untitled 1.md",
-    "98 - Meta/Templates/Travel/Trip Template.md",
-    "_scripts/test.base",
-    "README.md",
-    "05 - Areas/Travel/Travel.md",
-    "Bases card redirect test.md",
-    "05 - Areas/Travel/Trips/Test123/Test123.md",
-    "98 - Meta/System/Travel/_config.md"
+    "_scripts/pilot/images/JP/JP-3.jpg",
+    "_scripts/pilot/images/JP/JP.jpg",
+    "_scripts/pilot/images/JP/JP-1.jpg",
+    "_scripts/Columns Test.md",
+    "_scripts/pilot/images/JP/JP.jpg",
+    "_scripts/pilot/_Dataview Test.md",
+    "_scripts/pilot/Packing - Christmas 2026.md",
+    "_scripts/pilot/Packing - Baseline.md",
+    "_scripts/pilot/Hotel Gracery Shinjuku.md",
+    "_scripts/pilot/bases/Attractions.base",
+    "_scripts/pilot/bases/Accommodation.base",
+    "_scripts/pilot/bases/Food and Drink.base",
+    "_scripts/pilot/bases/Locales.base",
+    "_scripts/pilot/bases",
+    "_scripts/pilot/images/flags/JP.svg",
+    "_scripts/pilot/images/flags",
+    "_scripts/pilot/images/JP",
+    "_scripts/pilot/images",
+    "_scripts/Image Test Results.md",
+    "98 - Meta/Templates/Travel/_POC Pilot Country.md",
+    "_scripts/pilot/Kyoto, Japan.md",
+    "_scripts/pilot/Kiyomizu-dera.md",
+    "_scripts/pilot/_Pilot Readme.md",
+    "_scripts/pilot/Vietnam.md",
+    "_scripts/pilot/Tsukiji Outer Market.md",
+    "_scripts/pilot/Tokyo, Japan.md",
+    "_scripts/pilot/Someday Vietnam.md",
+    "_scripts/pilot/Senso-ji.md",
+    "_scripts/pilot/Japan 2023.md",
+    "_scripts/pilot/Ichiran Shibuya.md",
+    "_scripts/pilot/Christmas 2026.md",
+    "_scripts/image-test/kyoto-wikipedia.jpg",
+    "_scripts/image-test/kyoto-google-3.jpg",
+    "_scripts/image-test/kyoto-google-2.jpg",
+    "_scripts/image-test/kyoto-google-1.jpg",
+    "_scripts/image-test/melbourne-wikipedia.jpg"
   ]
 }

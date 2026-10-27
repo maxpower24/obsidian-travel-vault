@@ -2,6 +2,11 @@
   "enabledCssSnippets": [
     "columns-test",
     "full-width",
-    "mb-seamless-test"
-  ]
+    "location-test",
+    "mb-seamless-test",
+    "travel-gallery"
+  ],
+  "interfaceFontFamily": "",
+  "textFontFamily": "",
+  "monospaceFontFamily": ""
 }

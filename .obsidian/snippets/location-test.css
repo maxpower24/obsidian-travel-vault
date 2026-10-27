@@ -1,0 +1,91 @@
+/* hide-properties: generic note-level class (add via cssclasses) — hides the Properties panel and its heading */
+.hide-properties .metadata-container,
+.hide-properties .metadata-properties-heading,
+.hide-properties .frontmatter-container { display: none !important; }
+
+/* location-test.css — TEST: location note tweaks (cssclass: location-note) */
+
+
+/* No gap between the (hidden) properties and the first block in reading view */
+.location-note .markdown-preview-section > .mod-header + div > .callout:first-child,
+.location-note .markdown-preview-section > .mod-header + div > :first-child { margin-top: 0; }
+.location-note .markdown-preview-section > .mod-header { margin-bottom: 0; }
+
+/* Flag box: image fills the column width */
+.callout[data-callout="col"][data-callout-metadata~="flag"] img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-s);
+}
+
+/* Breathing room between stacked Meta Bind inputs */
+.location-note .callout-content p:has(.mb-input-wrapper) { line-height: 2.1; }
+.location-note .mb-input-wrapper { vertical-align: middle; }
+
+/* Seamless editor that fills: let the textarea / preview stretch too */
+.callout[data-callout="col"][data-callout-metadata~="fill"] .mb-seamless .mb-editor-input > div,
+.callout[data-callout="col"][data-callout-metadata~="fill"] .mb-seamless .mb-editor-input > textarea,
+.callout[data-callout="col"][data-callout-metadata~="fill"] .mb-seamless.mb-editor-input > div,
+.callout[data-callout="col"][data-callout-metadata~="fill"] .mb-seamless.mb-editor-input > textarea { flex: 1; }
+
+/* mb-adaptive: Meta Bind editor keeps its default look (background, padding)
+   but sizes to its content instead of the fixed 500px box */
+.mb-adaptive .mb-editor-input,
+.mb-adaptive.mb-editor-input {
+  height: auto;
+  min-height: 6em;
+  overflow: visible;
+}
+.mb-adaptive .mb-editor-input > div,
+.mb-adaptive .mb-editor-input > textarea,
+.mb-adaptive.mb-editor-input > div,
+.mb-adaptive.mb-editor-input > textarea {
+  position: relative;
+  inset: auto;
+}
+.mb-adaptive .mb-editor-input > textarea,
+.mb-adaptive.mb-editor-input > textarea {
+  width: 100%;
+  field-sizing: content;
+  min-height: 6em;
+}
+/* inside a fill column, also stretch to the remaining height */
+.callout[data-callout="col"][data-callout-metadata~="fill"] .mb-adaptive .mb-editor-input > div,
+.callout[data-callout="col"][data-callout-metadata~="fill"] .mb-adaptive .mb-editor-input > textarea,
+.callout[data-callout="col"][data-callout-metadata~="fill"] .mb-adaptive.mb-editor-input > div,
+.callout[data-callout="col"][data-callout-metadata~="fill"] .mb-adaptive.mb-editor-input > textarea { flex: 1; }
+
+/* mb-adaptive: match body text and tighten Meta Bind's wide default padding */
+.mb-adaptive .mb-editor-input > div,
+.mb-adaptive .mb-editor-input > textarea,
+.mb-adaptive.mb-editor-input > div,
+.mb-adaptive.mb-editor-input > textarea {
+  padding: var(--size-4-2) var(--size-4-3);
+  font-family: var(--font-text);
+  font-size: var(--font-text-size);
+  line-height: var(--line-height-normal);
+  color: var(--text-normal);
+}
+
+/* Tighter paragraph spacing inside columns (e.g. About → Notes) */
+.location-note .callout[data-callout="col"]:not([data-callout-metadata~="box"]) > .callout-content > p { margin-block: var(--size-4-2); }
+
+/* Status bar + badge */
+.travel-status-bar p { margin: 0 0 var(--size-4-2); }
+.travel-status {
+  display: inline-block;
+  padding: 0 0.6em;
+  border-radius: 999px;
+  font-size: var(--font-ui-small);
+  font-weight: 600;
+  background: var(--background-modifier-hover);
+}
+.travel-status-visited  { background: rgba(var(--color-green-rgb), 0.2); }
+.travel-status-planned  { background: rgba(var(--color-blue-rgb), 0.2); }
+.travel-status-saved    { background: rgba(var(--color-yellow-rgb), 0.2); }
+
+/* Status bar centred */
+.travel-status-bar,
+.travel-status-bar p { text-align: center; }
+
