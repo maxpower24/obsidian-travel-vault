@@ -1,13 +1,16 @@
-/* columns-test.css — TEST v2: flexible callout columns
+/* columns.css — flexible callout columns
    ------------------------------------------------------------------
    Container:   > [!columns]            equal widths (any number of columns)
                 > [!columns|1-2.5-1]    named ratio (see list below)
                 > [!columns|1-1 gap-l]  ratio + options, space-separated
    Columns:     > > [!col]              invisible: no title, icon, background or border
                 > > [!col|box]          plain bordered box, no title/icon
+                > > [!col|fill]         invisible; its Meta Bind editor (or last block) grows to fill
+                                        the column height (use with the container's `stretch` option)
                 > > [!note] Title       any normal callout keeps its usual look
    Ratios:      1-1, 1-1-1, 1-2, 2-1, 1-2-1, 1-2.5-1, 2-1-1, 1-1-2
-   Options:     gap-s, gap-l, stretch (equal-height columns), centre-first (phone order)
+   Options:     gap-s, gap-l, stretch (equal-height columns), centre-first (centre column first on phone)
+   Phone:       everything stacks into one column.
    ------------------------------------------------------------------ */
 
 /* ---- container ---- */
@@ -52,25 +55,16 @@
 }
 .is-phone .callout[data-callout="columns"][data-callout-metadata~="centre-first"] > .callout-content > .callout:nth-of-type(2) { order: -1; }
 
-/* ---- column cells ---- */
+/* ---- col: invisible cell ---- */
 .callout[data-callout="col"] {
   background: transparent;
   border: none;
   box-shadow: none;
   padding: 0;
+  gap: 0;
 }
 .callout[data-callout="col"] > .callout-title { display: none; }
 .callout[data-callout="col"] > .callout-content { padding: 0; }
-.callout[data-callout="col"] > .callout-content > :first-child { margin-top: 0; }
-
-.callout[data-callout="col"][data-callout-metadata~="box"] {
-  border: 1px solid var(--background-modifier-border);
-  border-radius: var(--radius-m);
-  padding: var(--size-4-3);
-}
-
-/* ---- v3 additions ---- */
-/* Tidy spacing inside invisible/boxed columns: no stray top/bottom margins */
 .callout[data-callout="col"] > .callout-content > :first-child { margin-top: 0; }
 .callout[data-callout="col"] > .callout-content > :last-child  { margin-bottom: 0; }
 .callout[data-callout="col"] .block-language-dataviewjs > :first-child,
@@ -79,8 +73,32 @@
 .callout[data-callout="col"] .block-language-dataviewjs > div > :last-child { margin-bottom: 0; }
 .callout[data-callout="col"] .block-language-dataviewjs p { margin: 0; }
 
-/* fill: a column whose last block grows to use the column's full height
-   (use with a container that has the `stretch` option) */
+/* ---- col|box: bordered cell, contents stacked with a small even gap ---- */
+.callout[data-callout="col"][data-callout-metadata~="box"] {
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-m);
+  padding: var(--size-4-3);
+}
+.callout[data-callout="col"][data-callout-metadata~="box"] > .callout-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-4-1);
+  padding: 0;
+  margin: 0;
+}
+/* headers, Dataview output and Meta Bind blocks all add their own margins otherwise */
+.callout[data-callout="col"][data-callout-metadata~="box"] > .callout-content > *,
+.callout[data-callout="col"][data-callout-metadata~="box"] > .callout-content p,
+.callout[data-callout="col"][data-callout-metadata~="box"] .block-language-dataviewjs,
+.callout[data-callout="col"][data-callout-metadata~="box"] .block-language-dataviewjs > *,
+.callout[data-callout="col"][data-callout-metadata~="box"] .block-language-dataviewjs div { margin: 0; }
+/* hide empty helper elements and padding inside Dataview output */
+.callout[data-callout="col"][data-callout-metadata~="box"] > .callout-content > :empty,
+.callout[data-callout="col"][data-callout-metadata~="box"] .block-language-dataviewjs :empty:not(br):not(img):not(input):not(textarea) { display: none; }
+.callout[data-callout="col"][data-callout-metadata~="box"] .block-language-dataviewjs,
+.callout[data-callout="col"][data-callout-metadata~="box"] .block-language-dataviewjs * { padding-top: 0; padding-bottom: 0; }
+
+/* ---- col|fill: one block grows to the column's full height ---- */
 .callout[data-callout="col"][data-callout-metadata~="fill"] {
   display: flex;
   flex-direction: column;
@@ -91,51 +109,27 @@
   display: flex;
   flex-direction: column;
 }
+/* default: the last block grows */
 .callout[data-callout="col"][data-callout-metadata~="fill"] > .callout-content > :last-child {
   flex: 1;
   display: flex;
   flex-direction: column;
 }
-.callout[data-callout="col"][data-callout-metadata~="fill"] > .callout-content > :last-child .mb-input-wrapper,
-.callout[data-callout="col"][data-callout-metadata~="fill"] > .callout-content > :last-child .mb-editor-input {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+/* if the column contains a Meta Bind editor, that block grows instead, so other blocks can sit below it */
+.callout[data-callout="col"][data-callout-metadata~="fill"] > .callout-content:has(.mb-editor-input) > :last-child:not(:has(.mb-editor-input)) {
+  flex: 0 0 auto;
+  display: block;
 }
-
-/* fill v2: if the column contains a Meta Bind editor, that block is the one that grows
-   (instead of the last block), so other blocks can sit below it */
-.callout[data-callout="col"][data-callout-metadata~="fill"] > .callout-content:has(.mb-editor-input) > :last-child:not(:has(.mb-editor-input)) { flex: 0 0 auto; display: block; }
 .callout[data-callout="col"][data-callout-metadata~="fill"] > .callout-content > :has(.mb-editor-input) {
   flex: 1;
   display: flex;
   flex-direction: column;
 }
+.callout[data-callout="col"][data-callout-metadata~="fill"] > .callout-content > :last-child .mb-input-wrapper,
+.callout[data-callout="col"][data-callout-metadata~="fill"] > .callout-content > :last-child .mb-editor-input,
 .callout[data-callout="col"][data-callout-metadata~="fill"] > .callout-content > :has(.mb-editor-input) .mb-input-wrapper,
 .callout[data-callout="col"][data-callout-metadata~="fill"] > .callout-content > :has(.mb-editor-input) .mb-editor-input {
   flex: 1;
   display: flex;
   flex-direction: column;
 }
-
-/* Box spacing v2: stack contents with a small gap and no stray margins
-   (headers, Dataview output and Meta Bind blocks all add their own margins otherwise) */
-.callout[data-callout="col"][data-callout-metadata~="box"] > .callout-content {
-  display: flex;
-  flex-direction: column;
-  gap: var(--size-4-1);
-}
-.callout[data-callout="col"][data-callout-metadata~="box"] > .callout-content > *,
-.callout[data-callout="col"][data-callout-metadata~="box"] > .callout-content p,
-.callout[data-callout="col"][data-callout-metadata~="box"] .block-language-dataviewjs,
-.callout[data-callout="col"][data-callout-metadata~="box"] .block-language-dataviewjs > *,
-.callout[data-callout="col"][data-callout-metadata~="box"] .block-language-dataviewjs div { margin: 0; }
-
-/* Box spacing v3: remove any padding/gap the callout or its content adds,
-   hide empty helper elements, and zero padding inside Dataview output */
-.callout[data-callout="col"] { gap: 0; }
-.callout[data-callout="col"][data-callout-metadata~="box"] > .callout-content { padding: 0; margin: 0; }
-.callout[data-callout="col"][data-callout-metadata~="box"] > .callout-content > :empty,
-.callout[data-callout="col"][data-callout-metadata~="box"] .block-language-dataviewjs :empty:not(br):not(img):not(input):not(textarea) { display: none; }
-.callout[data-callout="col"][data-callout-metadata~="box"] .block-language-dataviewjs,
-.callout[data-callout="col"][data-callout-metadata~="box"] .block-language-dataviewjs * { padding-top: 0; padding-bottom: 0; }

@@ -1,0 +1,54 @@
+filters:
+  and:
+    - note.Type == "Place"
+    - file.hasLink(this.file)
+    - formula.section == "Food & Drink"
+formulas:
+  section: 'if(["Food", "Cafe", "Bar", "Pub"].contains(note.Group), "Food & Drink", if(note.Group == "Stay", "Accommodation", if(note.Group == "Transport", "Transport", "Attractions")))'
+properties:
+  note.Rating:
+    displayName: Google
+views:
+  - type: cards
+    name: Top rated
+    image: note.Banner
+    order:
+      - file.name
+      - note.Rating
+    sort:
+      - property: note.Rating
+        direction: DESC
+    limit: 10
+  - type: cards
+    name: My top
+    image: note.Banner
+    order:
+      - file.name
+      - note["My Rating"]
+    sort:
+      - property: note["My Rating"]
+        direction: DESC
+    limit: 10
+  - type: cards
+    name: Recently added
+    image: note.Banner
+    order:
+      - file.name
+      - file.ctime
+    sort:
+      - property: file.ctime
+        direction: DESC
+    limit: 10
+  - type: cards
+    name: Last visited
+    image: note.Banner
+    filters:
+      and:
+        - note.Visited == true
+    order:
+      - file.name
+      - note["Last Visited"]
+    sort:
+      - property: note["Last Visited"]
+        direction: DESC
+    limit: 10

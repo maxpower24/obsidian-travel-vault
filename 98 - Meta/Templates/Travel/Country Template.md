@@ -1,34 +1,47 @@
 <%*
 /**
- * PILOT v3 — build a Country note from live APIs (REST Countries v5, Wikipedia, Google Places photos).
- * - Cover chosen ONCE: pop-up with 3 thumbnails; pick becomes <CC>.jpg + Banner, the others are deleted.
- *   (Dismiss = Photo 1. Re-running skips the pop-up once <CC>.jpg exists.)
- * - Layout: [1-2.5-1] Essentials · About · (Fill in over Before you go) → Locales cards (full width)
- *           → [1-1-1] Food & Drink · Accommodation · Attractions cards → My notes.
- * - Flag: REST Countries SVG saved once to the flags folder; used as the Pretty Properties icon and above Essentials.
- * Writes _scripts/pilot/<Country>.md (overwrites; keeps user-entered values and `Expected`).
+ * Country Template — build or rebuild a Country note from live APIs
+ * (REST Countries v5, Wikipedia, Google Places photos and timezone).
+ * - Prompts for an ISO alpha-2 code and writes <Countries Folder>/<Country>.md.
+ * - Re-running keeps what you've entered (Wishlist, Plugs, Packing, Notes…) and refreshes the rest.
+ * - Cover chosen ONCE: a pop-up shows thumbnails; the pick becomes <CC>.jpg (Banner), the others are deleted.
+ *   Dismiss = Photo 1. Re-running skips the pop-up once <CC>.jpg exists.
+ * - Flag SVG saved once to the flags folder and used as the Pretty Properties icon.
+ * Paths, secret IDs and home settings all come from the travel config note.
  */
-const PILOT_DIR  = "_scripts/pilot";
-const BASES      = `${PILOT_DIR}/bases`;
-const IMG_DIR    = `${PILOT_DIR}/images`;
-const CANDIDATES = 3;
-const BANNER_KEY = "Banner";
-const MAP_SOURCE = 1;          // index of MapTiler in Map View's map sources list (0 = first)
+const CONFIG_PATH = "98 - Meta/System/Travel/_config.md";
+const cfg  = tp.user.sysConfig(tp).loadConfig(CONFIG_PATH);
+const need = (k) => { if (cfg[k] === undefined || cfg[k] === null || cfg[k] === "") throw new Error(`"${k}" is not set in ${CONFIG_PATH}`); return cfg[k]; };
+
+const COUNTRIES   = need("Countries Folder");
+const BASES       = need("Bases Folder");
+const IMG_DIR     = need("Country Images Folder");
+const FLAG_DIR    = need("Flags Folder");
+const HOME_TZ     = need("Home Timezone");
+const HOME_CITY   = need("Home City");
+const HOME_CCY    = need("Home Currency");
+const GOOGLE_ID   = need("Google Secret");
+const RC_ID       = need("REST Countries Secret");
+const MAP_SOURCE  = Number(cfg["Map Source Index"] ?? 0);
+const CANDIDATES  = Number(cfg["Cover Candidates"] ?? 3);
+const HOLIDAY_IDS = Object.fromEntries((cfg["Holiday Calendars"] ?? [])
+    .map((s) => String(s).split(":").map((x) => x.trim()))
+    .filter((p) => p.length === 2 && p[0] && p[1]));
+const BANNER_KEY  = "Banner";   // must match the Pretty Properties banner property
+const ICON_KEY    = "Icon";     // must match the Pretty Properties icon property
 const DEST_HEADER = "Cities & Regions";
-const ICON_KEY   = "Icon";     // must match Pretty Properties icon property setting
-const FLAG_DIR   = `${IMG_DIR}/flags`;   // final vault: 06 - Resources/Images/Icons/Flags
 
 const http    = tp.user.sysHttp(tp);
 const geo     = tp.user.sysGeo(tp);
 const secrets = tp.user.sysSecrets(tp);
 const adapter = tp.app.vault.adapter;
-const UA      = { "User-Agent": "ObsidianTravelVault/0.1 (personal pilot)" };
+const UA      = { "User-Agent": "ObsidianTravelVault/0.1 (personal vault)" };
 
 const input = await tp.system.prompt("Country code (ISO alpha-2)", "JP");
 if (!input) return;
 const code = input.trim().toUpperCase();
 
-async function ensureDir(p) { if (!(await adapter.exists(p))) await adapter.mkdir(p); }
+async function ensureDir(p) { if (!(await adapter.exists(p))) await adapter.mkdir(p); }   // creates parent folders too
 async function download(url, path, headers = {}) {
     const res = await tp.obsidian.requestUrl({ url, headers, throw: false });
     if (res.status < 200 || res.status >= 300) throw new Error(`HTTP ${res.status} downloading ${path}`);
@@ -63,7 +76,7 @@ try {
     // ---- REST Countries
     const rc = await http.requestJson({
         url: `https://api.restcountries.com/countries/v5/codes.alpha_2/${code}`,
-        headers: { Authorization: `Bearer ${secrets.getSecret("rest-countries")}` },
+        headers: { Authorization: `Bearer ${secrets.getSecret(RC_ID)}` },
     });
     const c = rc.json?.data?.objects?.[0];
     if (!c) throw new Error(`REST Countries returned nothing for ${code} (HTTP ${rc.status})`);
@@ -80,7 +93,7 @@ try {
     const units     = [c.units?.measurement_system, c.units?.temperature_scale].filter(Boolean).map(cap).join(" · ");
 
     // ---- Flag (once)
-    await ensureDir(IMG_DIR); await ensureDir(FLAG_DIR);
+    await ensureDir(FLAG_DIR);
     const flagPath = `${FLAG_DIR}/${code}.svg`;
     if (!(await adapter.exists(flagPath)) && c.flag?.url_svg) await download(c.flag.url_svg, flagPath);
     const flag = (await adapter.exists(flagPath)) ? flagPath : "";
@@ -88,7 +101,7 @@ try {
     // ---- Cover: choose once
     const coverDir   = `${IMG_DIR}/${code}`;
     const finalCover = `${coverDir}/${code}.jpg`;
-    await ensureDir(IMG_DIR); await ensureDir(coverDir);
+    await ensureDir(coverDir);
 
     let cover = "";
     if (await adapter.exists(finalCover)) {
@@ -100,7 +113,7 @@ try {
             if (await adapter.exists(p)) cands.push(p);       // reuse candidates from an earlier run
         }
         if (cands.length === 0) {
-            const key = geo.getGoogleApiKey();
+            const key = geo.getGoogleApiKey(GOOGLE_ID);
             const search = await http.requestJson({
                 url: "https://places.googleapis.com/v1/places:searchText",
                 method: "POST",
@@ -137,7 +150,7 @@ try {
         const tzRes = await http.requestJson({
             url: "https://places.googleapis.com/v1/places:searchText",
             method: "POST",
-            headers: { "X-Goog-Api-Key": geo.getGoogleApiKey(), "X-Goog-FieldMask": "places.timeZone" },
+            headers: { "X-Goog-Api-Key": geo.getGoogleApiKey(GOOGLE_ID), "X-Goog-FieldMask": "places.timeZone" },
             body: { textQuery: `${capital}, ${name}`, pageSize: 1 },
         });
         capitalTz = tzRes.json?.places?.[0]?.timeZone?.id ?? "";
@@ -146,7 +159,8 @@ try {
     const wikiUrl = wiki.json?.content_urls?.desktop?.page ?? "";
 
     // ---- Keep user-entered values from an existing note
-    const notePath = `${PILOT_DIR}/${name}.md`;
+    await ensureDir(COUNTRIES);
+    const notePath = `${COUNTRIES}/${name}.md`;
     const existing = tp.app.vault.getAbstractFileByPath(notePath);
     const old  = existing ? (tp.app.metadataCache.getFileCache(existing)?.frontmatter ?? {}) : {};
     const keep = (k, d = "") => (old[k] !== undefined && old[k] !== null ? old[k] : d);
@@ -169,7 +183,7 @@ Visa: ${q(keep("Visa"))}
 Vaccine: ${q(keep("Vaccine", keep("Vaccines")))}
 My Notes: ${q(keep("My Notes"))}
 Last Refreshed: ${tp.date.now("YYYY-MM-DD")}
-${old.Expected ? `Expected: ${q(old.Expected)}\n` : ""}cssclasses:
+cssclasses:
   - full-width
   - location-note
   - hide-properties
@@ -215,7 +229,7 @@ dv.paragraph(\`<span class="travel-status travel-status-\${status.toLowerCase()}
 > >
 > > > [!col|box]
 > > > \`\`\`dataviewjs
-> > > const BASE = "AUD";
+> > > const BASE = "${HOME_CCY}";
 > > > const CODES = ${JSON.stringify(currencyCodes)};
 > > > const KEY = "travel-vault-fx-" + BASE;
 > > > const el = dv.el("div", "Loading exchange rate…");
@@ -244,7 +258,7 @@ dv.paragraph(\`<span class="travel-status travel-status-\${status.toLowerCase()}
 > >
 > > > [!col|box]
 > > > \`\`\`dataviewjs
-> > > const TZ = "${capitalTz}", HOME = "Australia/Melbourne", PLACE = "${capital}";
+> > > const TZ = "${capitalTz}", HOME = "${HOME_TZ}", HOME_NAME = "${HOME_CITY}", PLACE = "${capital}";
 > > > if (!TZ) { dv.paragraph("Local time unavailable"); } else {
 > > >     const off = (tz, d) => { const v = new Intl.DateTimeFormat("en-US", { timeZone: tz, timeZoneName: "shortOffset" }).formatToParts(d).find((p) => p.type === "timeZoneName").value; const m = v.match(/GMT([+-])(\\d+)(?::(\\d+))?/); if (!m) return 0; const n = +m[2] * 60 + +(m[3] || 0); return m[1] === "-" ? -n : n; };
 > > >     const el = dv.el("div", "");
@@ -253,7 +267,7 @@ dv.paragraph(\`<span class="travel-status travel-status-\${status.toLowerCase()}
 > > >         const t = now.toLocaleTimeString("en-AU", { timeZone: TZ, hour: "2-digit", minute: "2-digit" });
 > > >         const d = now.toLocaleDateString("en-AU", { timeZone: TZ, weekday: "short", day: "numeric", month: "short" });
 > > >         const diff = off(TZ, now) - off(HOME, now), h = Math.abs(diff) / 60;
-> > >         const rel = diff === 0 ? "same as Melbourne" : \`\${Number.isInteger(h) ? h : h.toFixed(1)} h \${diff > 0 ? "ahead of" : "behind"} Melbourne\`;
+> > >         const rel = diff === 0 ? "same as " + HOME_NAME : \`\${Number.isInteger(h) ? h : h.toFixed(1)} h \${diff > 0 ? "ahead of" : "behind"} \${HOME_NAME}\`;
 > > >         el.innerHTML = \`<div style="font-size:1.8em;font-weight:600;line-height:1.1">\${t}</div><div>\${PLACE} · \${d}</div><small>\${rel}</small>\`;
 > > >     };
 > > >     render();
@@ -265,7 +279,7 @@ dv.paragraph(\`<span class="travel-status travel-status-\${status.toLowerCase()}
 > > > **Holidays**
 > > > \`\`\`dataviewjs
 > > > const CC = "${code}";
-> > > const GOOGLE_IDS = { TH: "en.th", TW: "en.taiwan" };   // fallback map (final: config)
+> > > const GOOGLE_IDS = ${JSON.stringify(HOLIDAY_IDS)};   // Google Calendar fallback (from travel config)
 > > > const cur = dv.current();
 > > > const here = (l) => l && dv.page(l)?.file.path === cur.file.path;
 > > > // trip windows in this country, for highlighting
@@ -396,9 +410,9 @@ ${JSON.stringify({ name: "Default", mapZoom: 5, centerLat: centre?.lat ?? 0, cen
 
     if (existing) await tp.app.vault.modify(existing, content);
     else await tp.app.vault.create(notePath, content);
-    new Notice(`Pilot country built: ${notePath}`, 6000);
+    new Notice(`Country note built: ${notePath}`, 6000);
 } catch (e) {
-    console.error("Pilot country failed", e);
-    new Notice(`Pilot country failed: ${e.message}`, 8000);
+    console.error("Country Template failed", e);
+    new Notice(`Country Template failed: ${e.message}`, 8000);
 }
 %>

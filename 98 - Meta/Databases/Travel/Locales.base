@@ -1,0 +1,38 @@
+filters:
+  and:
+    - note.Type == "Locale"
+    - file.hasLink(this.file)
+formulas:
+  itins: 'file.backlinks.filter(value.asFile().properties.Type == "Itinerary")'
+  pastItins: 'formula.itins.filter(value.asFile().properties.End && date(value.asFile().properties.End) < now())'
+  upcomingItins: 'formula.itins.filter(!value.asFile().properties.End || date(value.asFile().properties.End) >= now())'
+  placesIn: 'file.backlinks.filter(value.asFile().properties.Type == "Place")'
+  placesVisited: 'formula.placesIn.filter(value.asFile().properties.Visited == true)'
+  category: 'if(formula.pastItins.length > 0 || formula.placesVisited.length > 0, "Visited", if(formula.upcomingItins.length > 0, "Planned", if(note.Wishlist || formula.placesIn.length > 0, "Saved", "Reference")))'
+  placeCount: 'formula.placesIn.length'
+properties:
+  formula.category:
+    displayName: Status
+  formula.placeCount:
+    displayName: Places
+views:
+  - type: cards
+    name: Cities & Regions
+    image: note.Banner
+    filters:
+      and:
+        - formula.category != "Reference"
+    groupBy:
+      property: formula.category
+      direction: DESC
+    order:
+      - file.name
+      - formula.placeCount
+  - type: table
+    name: Debug (all Cities & Regions)
+    order:
+      - file.name
+      - formula.category
+      - formula.itins
+      - formula.placesIn
+      - note.Wishlist

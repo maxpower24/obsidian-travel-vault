@@ -1,0 +1,43 @@
+/* utilities.css — generic note-level classes, usable on any note in any module
+   ------------------------------------------------------------------
+   hide-properties   (cssclasses) hides the Properties panel and its heading
+   mb-adaptive       (Meta Bind editor class) e.g. INPUT[editor(class(mb-adaptive)):["My Notes"]]
+                     keeps the default look but sizes to its content instead of a fixed 500px box;
+                     inside a [!col|fill] column it also stretches to the remaining height
+   ------------------------------------------------------------------ */
+
+/* ---- hide-properties ---- */
+.hide-properties .metadata-container,
+.hide-properties .metadata-properties-heading,
+.hide-properties .frontmatter-container { display: none !important; }
+
+/* ---- mb-adaptive ---- */
+.mb-adaptive .mb-editor-input,
+.mb-adaptive.mb-editor-input {
+  height: auto;
+  min-height: 6em;
+  overflow: visible;
+}
+.mb-adaptive .mb-editor-input > div,
+.mb-adaptive .mb-editor-input > textarea,
+.mb-adaptive.mb-editor-input > div,
+.mb-adaptive.mb-editor-input > textarea {
+  position: relative;
+  inset: auto;
+  /* match body text and tighten Meta Bind's wide default padding */
+  padding: var(--size-4-2) var(--size-4-3);
+  font-family: var(--font-text);
+  font-size: var(--font-text-size);
+  line-height: var(--line-height-normal);
+  color: var(--text-normal);
+}
+.mb-adaptive .mb-editor-input > textarea,
+.mb-adaptive.mb-editor-input > textarea {
+  width: 100%;
+  field-sizing: content;
+  min-height: 6em;
+}
+.callout[data-callout="col"][data-callout-metadata~="fill"] .mb-adaptive .mb-editor-input > div,
+.callout[data-callout="col"][data-callout-metadata~="fill"] .mb-adaptive .mb-editor-input > textarea,
+.callout[data-callout="col"][data-callout-metadata~="fill"] .mb-adaptive.mb-editor-input > div,
+.callout[data-callout="col"][data-callout-metadata~="fill"] .mb-adaptive.mb-editor-input > textarea { flex: 1; }

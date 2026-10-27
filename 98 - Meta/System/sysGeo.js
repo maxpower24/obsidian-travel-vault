@@ -14,7 +14,7 @@ module.exports = (tp) => {
     const secrets = tp.user.sysSecrets(tp);
 
     const MAP_VIEW_ID       = "obsidian-map-view";
-    const DEFAULT_SECRET_ID = "google-places";   // TODO: pass from domain config
+    const DEFAULT_SECRET_ID = "google-places";   // callers normally pass the ID from their domain config
 
     /**
      * Return the Google API key.

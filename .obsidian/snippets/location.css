@@ -1,0 +1,29 @@
+/* location.css — travel location notes (cssclasses: location-note) and the status badge */
+
+/* No gap between the (hidden) properties and the first block in reading view */
+.location-note .markdown-preview-section > .mod-header + div > .callout:first-child,
+.location-note .markdown-preview-section > .mod-header + div > :first-child { margin-top: 0; }
+.location-note .markdown-preview-section > .mod-header { margin-bottom: 0; }
+
+/* Breathing room between stacked Meta Bind inputs */
+.location-note .callout-content p:has(.mb-input-wrapper) { line-height: 2.1; }
+.location-note .mb-input-wrapper { vertical-align: middle; }
+
+/* Tighter paragraph spacing inside unboxed columns (e.g. the About column) */
+.location-note .callout[data-callout="col"]:not([data-callout-metadata~="box"]) > .callout-content > p { margin-block: var(--size-4-2); }
+
+/* Status bar (centred) + badge */
+.travel-status-bar,
+.travel-status-bar p { text-align: center; }
+.travel-status-bar p { margin: 0 0 var(--size-4-2); }
+.travel-status {
+  display: inline-block;
+  padding: 0 0.6em;
+  border-radius: 999px;
+  font-size: var(--font-ui-small);
+  font-weight: 600;
+  background: var(--background-modifier-hover);
+}
+.travel-status-visited { background: rgba(var(--color-green-rgb), 0.2); }
+.travel-status-planned { background: rgba(var(--color-blue-rgb), 0.2); }
+.travel-status-saved   { background: rgba(var(--color-yellow-rgb), 0.2); }

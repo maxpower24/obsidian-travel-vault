@@ -13,15 +13,58 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_scripts/pilot/Japan.md",
+                "file": "05 - Areas/Travel/Travel.md",
+                "mode": "preview",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Travel"
+            }
+          },
+          {
+            "id": "0aad06213521b231",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "05 - Areas/Travel/Countries/Japan.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
               "title": "Japan"
             }
+          },
+          {
+            "id": "02c3437eb478fc4d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "05 - Areas/Travel/Countries/Vietnam.md",
+                "mode": "preview",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Vietnam"
+            }
+          },
+          {
+            "id": "15a91c4cd374926a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "05 - Areas/Travel/Countries/Australia.md",
+                "mode": "preview",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Australia"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -96,6 +139,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "98 - Meta/System/Travel/_config.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -171,7 +215,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -187,52 +232,52 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "64d4e1d14c733ffd",
+  "active": "0aad06213521b231",
   "lastOpenFiles": [
+    "05 - Areas/Travel/Countries/Vietnam.md",
+    "05 - Areas/Travel/Countries/Australia.md",
+    "05 - Areas/Travel/Countries/Japan.md",
+    "05 - Areas/Travel/Travel.md",
+    "06 - Resources/Images/Countries/VN/VN.jpg",
+    "06 - Resources/Images/Countries/VN/VN-2.jpg",
+    "06 - Resources/Images/Countries/VN/VN-1.jpg",
+    "06 - Resources/Images/Countries/VN/VN.jpg",
+    "06 - Resources/Images/Countries/VN",
+    "06 - Resources/Images/Icons/Flags/VN.svg",
+    "06 - Resources/Images/Countries/AU/AU-3.jpg",
+    "06 - Resources/Images/Countries/AU/AU-2.jpg",
+    "06 - Resources/Images/Countries/AU/AU.jpg",
+    "06 - Resources/Images/Countries/AU",
+    "06 - Resources/Images/Icons/Flags/AU.svg",
+    "98 - Meta/System/Travel/_config.md",
+    "05 - Areas/Travel/Cities & Regions/Canberra, Australia.md",
+    "06 - Resources/Google Places/Location added on 2026-10-26T16-05.md",
+    "_scripts/cleanup.ps1",
+    "98 - Meta/Templates/Travel/Country Template.md",
+    "98 - Meta/System/Travel/Packing Baseline.md",
+    "98 - Meta/Databases/Travel/Locales.base",
+    "98 - Meta/Databases/Travel/Food and Drink.base",
+    "98 - Meta/Databases/Travel/Attractions.base",
+    "98 - Meta/Databases/Travel/Accommodation.base",
+    "06 - Resources/Images/Icons/Flags/JP.svg",
+    "06 - Resources/Images/Icons/Flags",
+    "06 - Resources/Images/Icons",
+    "06 - Resources/Images/Countries/JP",
+    "05 - Areas/Travel/Trips/Someday Vietnam/Someday Vietnam.md",
+    "05 - Areas/Travel/Trips/Japan 2023/Japan 2023.md",
+    "05 - Areas/Travel/Trips/Japan 2023/2023 - Tokyo stay.md",
+    "05 - Areas/Travel/Trips/Japan 2023/2023 - Ichiran dinner.md",
+    "05 - Areas/Travel/Trips/Christmas 2026/Packing - Christmas 2026.md",
+    "05 - Areas/Travel/Trips/Christmas 2026/Christmas 2026.md",
+    "05 - Areas/Travel/Trips/Christmas 2026/2026 - Senso-ji morning.md",
+    "05 - Areas/Travel/Places/Tsukiji Outer Market.md",
+    "05 - Areas/Travel/Places/Senso-ji.md",
+    "05 - Areas/Travel/Places/Kiyomizu-dera.md",
+    "05 - Areas/Travel/Places/Ichiran Shibuya.md",
+    "05 - Areas/Travel/Places/Hotel Gracery Shinjuku.md",
+    "05 - Areas/Travel/Cities & Regions/Tokyo, Japan.md",
+    "05 - Areas/Travel/Cities & Regions/Kyoto, Japan.md",
     "_scripts/pilot/Japan.md",
-    "_scripts/Pilot Country.md",
-    "_scripts/Holiday Test.md",
-    "_scripts/holiday-ics-test-output.json",
-    "98 - Meta/Templates/Travel/_POC Holiday ICS Test.md",
-    "_scripts/holiday-test-output.json",
-    "98 - Meta/Templates/Travel/_POC Holiday Test.md",
-    "_scripts/Meta Bind Test.md",
-    "Untitled.md",
-    "_scripts/pilot/images/JP/JP-3.jpg",
-    "_scripts/pilot/images/JP/JP.jpg",
-    "_scripts/pilot/images/JP/JP-1.jpg",
-    "_scripts/Columns Test.md",
-    "_scripts/pilot/images/JP/JP.jpg",
-    "_scripts/pilot/_Dataview Test.md",
-    "_scripts/pilot/Packing - Christmas 2026.md",
-    "_scripts/pilot/Packing - Baseline.md",
-    "_scripts/pilot/Hotel Gracery Shinjuku.md",
-    "_scripts/pilot/bases/Attractions.base",
-    "_scripts/pilot/bases/Accommodation.base",
-    "_scripts/pilot/bases/Food and Drink.base",
-    "_scripts/pilot/bases/Locales.base",
-    "_scripts/pilot/bases",
-    "_scripts/pilot/images/flags/JP.svg",
-    "_scripts/pilot/images/flags",
-    "_scripts/pilot/images/JP",
-    "_scripts/pilot/images",
-    "_scripts/Image Test Results.md",
-    "98 - Meta/Templates/Travel/_POC Pilot Country.md",
-    "_scripts/pilot/Kyoto, Japan.md",
-    "_scripts/pilot/Kiyomizu-dera.md",
-    "_scripts/pilot/_Pilot Readme.md",
-    "_scripts/pilot/Vietnam.md",
-    "_scripts/pilot/Tsukiji Outer Market.md",
-    "_scripts/pilot/Tokyo, Japan.md",
-    "_scripts/pilot/Someday Vietnam.md",
-    "_scripts/pilot/Senso-ji.md",
-    "_scripts/pilot/Japan 2023.md",
-    "_scripts/pilot/Ichiran Shibuya.md",
-    "_scripts/pilot/Christmas 2026.md",
-    "_scripts/image-test/kyoto-wikipedia.jpg",
-    "_scripts/image-test/kyoto-google-3.jpg",
-    "_scripts/image-test/kyoto-google-2.jpg",
-    "_scripts/image-test/kyoto-google-1.jpg",
-    "_scripts/image-test/melbourne-wikipedia.jpg"
+    "_scripts/Pilot Country.md"
   ]
 }

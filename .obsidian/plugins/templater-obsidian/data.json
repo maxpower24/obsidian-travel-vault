@@ -13,8 +13,7 @@
   "syntax_highlighting": true,
   "syntax_highlighting_mobile": false,
   "enabled_templates_hotkeys": [
-    "98 - Meta/Templates/Travel/Trip Template.md",
-    "98 - Meta/Templates/Travel/_POC Places Inbox.md"
+    "98 - Meta/Templates/Travel/Trip Template.md"
   ],
   "startup_templates": [],
   "intellisense_render": "1",
