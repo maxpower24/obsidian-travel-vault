@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "063e73cea1827b67",
+        "id": "61f55b720d817998",
         "type": "tabs",
         "children": [
           {
-            "id": "1f5772bfea1dd119",
+            "id": "f4aa5a3c2bf13e71",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -22,7 +22,35 @@
             }
           },
           {
-            "id": "0aad06213521b231",
+            "id": "b6ed3ec0118a2932",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "05 - Areas/Travel/Cities & Regions/Tokyo, Japan.md",
+                "mode": "preview",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Tokyo, Japan"
+            }
+          },
+          {
+            "id": "8154220e526cb4cb",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "05 - Areas/Travel/Cities & Regions/Canberra, Australia.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Canberra, Australia"
+            }
+          },
+          {
+            "id": "44f9dc850cd8550f",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -34,37 +62,9 @@
               "icon": "lucide-file",
               "title": "Japan"
             }
-          },
-          {
-            "id": "02c3437eb478fc4d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "05 - Areas/Travel/Countries/Vietnam.md",
-                "mode": "preview",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Vietnam"
-            }
-          },
-          {
-            "id": "15a91c4cd374926a",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "05 - Areas/Travel/Countries/Australia.md",
-                "mode": "preview",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Australia"
-            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -232,52 +232,52 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "0aad06213521b231",
+  "active": "8154220e526cb4cb",
   "lastOpenFiles": [
-    "05 - Areas/Travel/Countries/Vietnam.md",
-    "05 - Areas/Travel/Countries/Australia.md",
+    "05 - Areas/Travel/Cities & Regions/Tokyo, Japan.md",
+    "05 - Areas/Travel/Cities & Regions/Canberra, Australia.md",
     "05 - Areas/Travel/Countries/Japan.md",
     "05 - Areas/Travel/Travel.md",
-    "06 - Resources/Images/Countries/VN/VN.jpg",
-    "06 - Resources/Images/Countries/VN/VN-2.jpg",
-    "06 - Resources/Images/Countries/VN/VN-1.jpg",
-    "06 - Resources/Images/Countries/VN/VN.jpg",
-    "06 - Resources/Images/Countries/VN",
-    "06 - Resources/Images/Icons/Flags/VN.svg",
-    "06 - Resources/Images/Countries/AU/AU-3.jpg",
-    "06 - Resources/Images/Countries/AU/AU-2.jpg",
-    "06 - Resources/Images/Countries/AU/AU.jpg",
-    "06 - Resources/Images/Countries/AU",
-    "06 - Resources/Images/Icons/Flags/AU.svg",
-    "98 - Meta/System/Travel/_config.md",
-    "05 - Areas/Travel/Cities & Regions/Canberra, Australia.md",
-    "06 - Resources/Google Places/Location added on 2026-10-26T16-05.md",
-    "_scripts/cleanup.ps1",
-    "98 - Meta/Templates/Travel/Country Template.md",
-    "98 - Meta/System/Travel/Packing Baseline.md",
-    "98 - Meta/Databases/Travel/Locales.base",
-    "98 - Meta/Databases/Travel/Food and Drink.base",
-    "98 - Meta/Databases/Travel/Attractions.base",
-    "98 - Meta/Databases/Travel/Accommodation.base",
-    "06 - Resources/Images/Icons/Flags/JP.svg",
-    "06 - Resources/Images/Icons/Flags",
-    "06 - Resources/Images/Icons",
-    "06 - Resources/Images/Countries/JP",
-    "05 - Areas/Travel/Trips/Someday Vietnam/Someday Vietnam.md",
-    "05 - Areas/Travel/Trips/Japan 2023/Japan 2023.md",
-    "05 - Areas/Travel/Trips/Japan 2023/2023 - Tokyo stay.md",
-    "05 - Areas/Travel/Trips/Japan 2023/2023 - Ichiran dinner.md",
-    "05 - Areas/Travel/Trips/Christmas 2026/Packing - Christmas 2026.md",
-    "05 - Areas/Travel/Trips/Christmas 2026/Christmas 2026.md",
-    "05 - Areas/Travel/Trips/Christmas 2026/2026 - Senso-ji morning.md",
-    "05 - Areas/Travel/Places/Tsukiji Outer Market.md",
-    "05 - Areas/Travel/Places/Senso-ji.md",
-    "05 - Areas/Travel/Places/Kiyomizu-dera.md",
-    "05 - Areas/Travel/Places/Ichiran Shibuya.md",
-    "05 - Areas/Travel/Places/Hotel Gracery Shinjuku.md",
-    "05 - Areas/Travel/Cities & Regions/Tokyo, Japan.md",
     "05 - Areas/Travel/Cities & Regions/Kyoto, Japan.md",
-    "_scripts/pilot/Japan.md",
-    "_scripts/Pilot Country.md"
+    "98 - Meta/Views/Travel/placeIcons.json",
+    "98 - Meta/Views/Travel/fromCountry.js",
+    "98 - Meta/Views/Travel/onThePlan.js",
+    "98 - Meta/Views/Travel/stillToDo.js",
+    "05 - Areas/Travel/Trips/Japan 2023/Japan 2023.md",
+    "05 - Areas/Travel/Trips/Someday Vietnam/Someday Vietnam.md",
+    "05 - Areas/Travel/Trips/Christmas 2026/2026 - Senso-ji morning.md",
+    "05 - Areas/Travel/Trips/Christmas 2026/Packing - Christmas 2026.md",
+    "05 - Areas/Travel/Trips/Japan 2023/2023 - Ichiran dinner.md",
+    "05 - Areas/Travel/Trips/Japan 2023/2023 - Tokyo stay.md",
+    "05 - Areas/Travel/Trips/Christmas 2026/Christmas 2026.md",
+    "98 - Meta/Views/Travel/climate.js",
+    "06 - Resources/Images/Cities & Regions/Tokyo, Japan/Tokyo, Japan-3.jpg",
+    "06 - Resources/Images/Cities & Regions/Tokyo, Japan/Tokyo, Japan.jpg",
+    "06 - Resources/Images/Cities & Regions/Tokyo, Japan/Tokyo, Japan-1.jpg",
+    "06 - Resources/Images/Cities & Regions/Tokyo, Japan",
+    "06 - Resources/Images/Cities & Regions/Canberra, Australia/Canberra, Australia-3.jpg",
+    "06 - Resources/Images/Cities & Regions/Canberra, Australia/Canberra, Australia-2.jpg",
+    "06 - Resources/Images/Cities & Regions/Canberra, Australia/Canberra, Australia.jpg",
+    "06 - Resources/Images/Cities & Regions/Canberra, Australia",
+    "06 - Resources/Images/Cities & Regions/Kyoto, Japan/Kyoto, Japan.jpg",
+    "06 - Resources/Images/Cities & Regions/Kyoto, Japan/Kyoto, Japan-2.jpg",
+    "06 - Resources/Images/Cities & Regions/Kyoto, Japan/Kyoto, Japan-1.jpg",
+    "06 - Resources/Images/Cities & Regions/Kyoto, Japan",
+    "06 - Resources/Images/Cities & Regions",
+    "98 - Meta/Views/Travel/weather.js",
+    "98 - Meta/Views/Travel/_README.md",
+    "98 - Meta/Templates/Travel/City Template.md",
+    "05 - Areas/Travel/Countries/Countries.md",
+    "05 - Areas/Travel/Places/Tsukiji Outer Market.md",
+    "05 - Areas/Travel/Trips/Trips.md",
+    "05 - Areas/Travel/Places/Places.md",
+    "05 - Areas/Travel/Cities & Regions/Cities & Regions.md",
+    "05 - Areas/05 - Areas.md",
+    "Home.md",
+    "05 - Areas/Travel/Countries/Vietnam.md",
+    "05 - Areas/Travel/Countries/Australia.md",
+    "06 - Resources/Images/Countries/VN/VN.jpg",
+    "98 - Meta/System/Travel/_config.md",
+    "06 - Resources/Google Places/Location added on 2026-10-26T16-05.md"
   ]
 }

@@ -102,7 +102,8 @@
 .callout[data-callout="col"][data-callout-metadata~="fill"] {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  /* no height: 100% — the grid's stretch already sizes the column to its row, and a percentage
+     height resolves differently in edit mode, making the column taller than the row */
 }
 .callout[data-callout="col"][data-callout-metadata~="fill"] > .callout-content {
   flex: 1;
@@ -133,3 +134,14 @@
   display: flex;
   flex-direction: column;
 }
+
+/* ---- overflow ----
+   Obsidian gives every .callout-content `overflow-x: auto`, and Dataview gives every block the same,
+   which turns them into scroll boxes: anything poking out by a pixel shows a scroll bar (edit mode)
+   or gets clipped (reading view). Columns are layout, not content, so none of them scroll. */
+.callout[data-callout="columns"],
+.callout[data-callout="col"],
+.callout[data-callout="columns"] > .callout-content,
+.callout[data-callout="col"] > .callout-content,
+.callout[data-callout="col"] .block-language-dataviewjs { overflow: visible !important; }
+.callout[data-callout="col"][data-callout-metadata~="fill"] > .callout-content > :not(:has(.mb-editor-input)) { flex-shrink: 0; }

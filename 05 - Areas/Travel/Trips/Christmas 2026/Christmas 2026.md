@@ -5,3 +5,6 @@ End: 2027-01-15
 Booked: true
 Cancelled: false
 ---
+```dataviewjs
+await dv.view("98 - Meta/Views/nav")
+```

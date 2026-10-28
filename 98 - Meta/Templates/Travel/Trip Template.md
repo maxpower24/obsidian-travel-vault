@@ -17,3 +17,6 @@ const travel = tp.user.travelOrchestrator(tp);
 
 await travel.createNewTrip(CONFIG_PATH);
 %>
+```dataviewjs
+await dv.view("98 - Meta/Views/nav")
+```

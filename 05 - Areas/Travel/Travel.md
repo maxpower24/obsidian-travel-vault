@@ -1,3 +1,6 @@
+```dataviewjs
+await dv.view("98 - Meta/Views/nav")
+```
 Travel dashboard.
 
 ```meta-bind-button
@@ -16,6 +19,13 @@ style: default
 action:
   type: runTemplaterFile
   templateFile: "98 - Meta/Templates/Travel/Country Template.md"
+```
+```meta-bind-button
+label: New / Refresh City or Region
+style: default
+action:
+  type: runTemplaterFile
+  templateFile: "98 - Meta/Templates/Travel/City Template.md"
 ```
 
 Planned items:

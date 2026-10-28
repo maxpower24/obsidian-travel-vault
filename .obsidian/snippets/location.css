@@ -27,3 +27,60 @@
 .travel-status-visited { background: rgba(var(--color-green-rgb), 0.2); }
 .travel-status-planned { background: rgba(var(--color-blue-rgb), 0.2); }
 .travel-status-saved   { background: rgba(var(--color-yellow-rgb), 0.2); }
+
+/* Best time to visit (98 - Meta/Views/Travel/climate.js): 6 × 2 month tiles */
+.travel-climate { display: flex; flex-direction: column; gap: var(--size-4-1); margin-block: var(--size-4-2); padding-bottom: 4px; }
+.travel-climate small { color: var(--text-muted); }
+.travel-climate-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: var(--size-4-2);
+  margin-top: var(--size-4-1);
+}
+.is-phone .travel-climate-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.travel-climate-month {
+  --tile-hue: 120;
+  padding: var(--size-4-2);
+  border-radius: var(--radius-m);
+  border: 1px solid hsla(var(--tile-hue), 60%, 50%, 0.35);
+  background: linear-gradient(160deg, hsla(var(--tile-hue), 70%, 55%, 0.22), hsla(var(--tile-hue), 70%, 55%, 0.06));
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: var(--font-ui-small);
+  line-height: 1.25;
+}
+.travel-climate-month.is-best { border: 2px solid var(--interactive-accent); }
+.travel-climate-month.is-now  { box-shadow: 0 0 0 2px var(--background-primary), 0 0 0 4px var(--text-muted); }
+.travel-climate-name  { font-weight: 600; display: flex; gap: 4px; align-items: center; }
+.travel-climate-badge { font-size: 0.85em; }
+.travel-climate-badge:first-of-type { margin-left: auto; }
+.travel-climate-hi    { font-size: 1.35em; font-weight: 700; color: var(--text-normal); }
+.travel-climate-lo    { color: var(--text-muted); }
+.travel-climate-rain  { color: var(--text-muted); font-size: 0.9em; }
+.travel-climate-rainbar {
+  height: 4px;
+  border-radius: 2px;
+  margin-bottom: 2px;
+  background: rgba(var(--color-blue-rgb), 0.7);
+  min-width: 2px;
+}
+
+/* City widgets: Still to Do, On the Plan, From the Country */
+.travel-hidden { display: none !important; }
+.travel-muted { color: var(--text-muted); font-size: var(--font-ui-small); }
+.travel-todo { display: flex; flex-direction: column; gap: var(--size-4-1); }
+.travel-todo-list { display: flex; flex-direction: column; gap: 2px; }
+.travel-todo-row { display: flex; align-items: center; gap: var(--size-4-2); cursor: pointer; }
+.travel-todo-row input { margin: 0; }
+.travel-todo-row.is-done { opacity: 0.5; text-decoration: line-through; }
+
+/* Title separator (e.g. "Best Time to Visit · Apr") */
+.travel-sep { margin: 0 0.45em; color: var(--text-faint); font-weight: 700; }
+
+/* Climate tiles: keep the last line clear of the border */
+.travel-climate .travel-climate-month { padding: var(--size-4-2) var(--size-4-2) var(--size-4-3); line-height: 1.35; }
+
+/* Safety: a full-width text area in Local Tips (a Meta Bind block, so it sits on its own line) */
+.travel-safety textarea,
+textarea.travel-safety { width: 100%; min-height: 4.5em; resize: vertical; }

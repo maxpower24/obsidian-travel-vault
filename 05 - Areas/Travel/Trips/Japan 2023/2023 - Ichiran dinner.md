@@ -8,3 +8,6 @@ Country: "[[Japan]]"
 Start: 2023-04-03T19:00
 End: 2023-04-03T20:00
 ---
+```dataviewjs
+await dv.view("98 - Meta/Views/nav")
+```
