@@ -11,7 +11,14 @@ Price Level: Moderate
 Last Visited: 2023-04-05
 location: "35.6654,139.7707"
 ---
-```dataviewjs
-await dv.view("98 - Meta/Views/nav")
+```nav
 ```
 Visited `INPUT[toggle:Visited]`
+
+```meta-bind-button
+label: Add to Trip
+style: primary
+action:
+  type: command
+  command: travel:add-to-trip
+```

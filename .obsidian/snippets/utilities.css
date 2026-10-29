@@ -1,6 +1,8 @@
 /* utilities.css — generic note-level classes, usable on any note in any module
    ------------------------------------------------------------------
    hide-properties   (cssclasses) hides the Properties panel and its heading
+   vault-hidden      set by the vault plugins on a widget's box when it has nothing to show
+   vault-block-error a widget that failed, with the reason
    mb-adaptive       (Meta Bind editor class) e.g. INPUT[editor(class(mb-adaptive)):["My Notes"]]
                      keeps the default look but sizes to its content instead of a fixed 500px box;
                      inside a [!col|fill] column it also stretches to the remaining height
@@ -41,3 +43,9 @@
 .callout[data-callout="col"][data-callout-metadata~="fill"] .mb-adaptive .mb-editor-input > textarea,
 .callout[data-callout="col"][data-callout-metadata~="fill"] .mb-adaptive.mb-editor-input > div,
 .callout[data-callout="col"][data-callout-metadata~="fill"] .mb-adaptive.mb-editor-input > textarea { flex: 1; }
+
+/* ---- vault-hidden ---- */
+.vault-hidden { display: none !important; }
+
+/* ---- vault-block-error ---- */
+.vault-block-error { color: var(--text-error); white-space: pre-wrap; font-size: var(--font-ui-small); }

@@ -2,15 +2,19 @@
 
 /* No gap between the (hidden) properties and the first block in reading view */
 .location-note .markdown-preview-section > .mod-header + div > .callout:first-child,
-.location-note .markdown-preview-section > .mod-header + div > :first-child { margin-top: 0; }
-.location-note .markdown-preview-section > .mod-header { margin-bottom: 0; }
+.location-note .markdown-preview-section > .mod-header + div > :first-child,
+.trip-note .markdown-preview-section > .mod-header + div > :first-child { margin-top: 0; }
+.location-note .markdown-preview-section > .mod-header,
+.trip-note .markdown-preview-section > .mod-header { margin-bottom: 0; }
 
 /* Breathing room between stacked Meta Bind inputs */
-.location-note .callout-content p:has(.mb-input-wrapper) { line-height: 2.1; }
+.location-note .callout-content p:has(.mb-input-wrapper),
+.trip-note .callout-content p:has(.mb-input-wrapper) { line-height: 2.1; }
 .location-note .mb-input-wrapper { vertical-align: middle; }
 
 /* Tighter paragraph spacing inside unboxed columns (e.g. the About column) */
-.location-note .callout[data-callout="col"]:not([data-callout-metadata~="box"]) > .callout-content > p { margin-block: var(--size-4-2); }
+.location-note .callout[data-callout="col"]:not([data-callout-metadata~="box"]) > .callout-content > p,
+.trip-note .callout[data-callout="col"]:not([data-callout-metadata~="box"]) > .callout-content > p { margin-block: var(--size-4-2); }
 
 /* Status bar (centred) + badge */
 .travel-status-bar,
@@ -27,6 +31,13 @@
 .travel-status-visited { background: rgba(var(--color-green-rgb), 0.2); }
 .travel-status-planned { background: rgba(var(--color-blue-rgb), 0.2); }
 .travel-status-saved   { background: rgba(var(--color-yellow-rgb), 0.2); }
+/* trip statuses */
+.travel-status-planning  { background: rgba(var(--color-yellow-rgb), 0.2); }
+.travel-status-booked    { background: rgba(var(--color-blue-rgb), 0.2); }
+.travel-status-active    { background: rgba(var(--color-green-rgb), 0.3); }
+.travel-status-done      { background: rgba(var(--color-purple-rgb), 0.2); }
+.travel-status-cancelled { background: rgba(var(--color-red-rgb), 0.2); }
+.travel-status-idea      { background: var(--background-modifier-hover); }
 
 /* Best time to visit (98 - Meta/Views/Travel/climate.js): 6 × 2 month tiles */
 .travel-climate { display: flex; flex-direction: column; gap: var(--size-4-1); margin-block: var(--size-4-2); padding-bottom: 4px; }
@@ -40,7 +51,7 @@
 .is-phone .travel-climate-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .travel-climate-month {
   --tile-hue: 120;
-  padding: var(--size-4-2);
+  padding: var(--size-4-2) var(--size-4-2) var(--size-4-3);
   border-radius: var(--radius-m);
   border: 1px solid hsla(var(--tile-hue), 60%, 50%, 0.35);
   background: linear-gradient(160deg, hsla(var(--tile-hue), 70%, 55%, 0.22), hsla(var(--tile-hue), 70%, 55%, 0.06));
@@ -48,7 +59,7 @@
   flex-direction: column;
   gap: 2px;
   font-size: var(--font-ui-small);
-  line-height: 1.25;
+  line-height: 1.35;
 }
 .travel-climate-month.is-best { border: 2px solid var(--interactive-accent); }
 .travel-climate-month.is-now  { box-shadow: 0 0 0 2px var(--background-primary), 0 0 0 4px var(--text-muted); }
@@ -66,7 +77,7 @@
   min-width: 2px;
 }
 
-/* City widgets: Still to Do, On the Plan, From the Country */
+/* Widgets: Yet to Visit, Coming Up */
 .travel-hidden { display: none !important; }
 .travel-muted { color: var(--text-muted); font-size: var(--font-ui-small); }
 .travel-todo { display: flex; flex-direction: column; gap: var(--size-4-1); }
@@ -78,9 +89,94 @@
 /* Title separator (e.g. "Best Time to Visit · Apr") */
 .travel-sep { margin: 0 0.45em; color: var(--text-faint); font-weight: 700; }
 
-/* Climate tiles: keep the last line clear of the border */
-.travel-climate .travel-climate-month { padding: var(--size-4-2) var(--size-4-2) var(--size-4-3); line-height: 1.35; }
-
 /* Safety: a full-width text area in Local Tips (a Meta Bind block, so it sits on its own line) */
 .travel-safety textarea,
 textarea.travel-safety { width: 100%; min-height: 4.5em; resize: vertical; }
+
+/* ---- Trip note widgets ---- */
+/* the hidden `link` column the redirect plugin reads (it stays in the page, just not shown) */
+.card-redirect .bases-cards-property[data-property="formula.link"] { display: none; }
+
+/* itinerary lines: icon · when · what ✏️ */
+.travel-itin { display: flex; align-items: baseline; gap: var(--size-4-2); }
+.travel-itin-text { flex: 1; min-width: 0; }
+.travel-edit { cursor: pointer; opacity: 0.35; font-size: 0.85em; transition: opacity 0.15s; }
+.travel-itin:hover .travel-edit, .travel-edit:focus { opacity: 1; }
+.is-phone .travel-edit { opacity: 0.7; }
+.travel-next, .travel-gaps, .travel-plan, .travel-holidays, .travel-packing { display: flex; flex-direction: column; gap: 2px; }
+.travel-next strong:not(:first-child) { margin-top: var(--size-4-2); }
+
+/* countdown */
+.travel-countdown { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0; }
+.travel-countdown-big  { font-size: 2.6em; font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; }
+.travel-countdown-unit { color: var(--text-muted); font-weight: 600; text-transform: uppercase; font-size: var(--font-ui-smaller); letter-spacing: 0.08em; }
+
+/* packing meter + small buttons */
+.travel-meter { height: 6px; border-radius: 3px; background: var(--background-modifier-border); overflow: hidden; margin: 2px 0 var(--size-4-1); }
+.travel-meter-fill { height: 100%; border-radius: 3px; background: var(--interactive-accent); }
+.travel-small-button { align-self: flex-start; font-size: var(--font-ui-smaller); padding: 2px 10px; height: auto; }
+
+/* route timeline */
+.travel-route { display: flex; flex-direction: column; gap: var(--size-4-1); margin-block: var(--size-4-2); }
+.travel-route-bar { display: flex; gap: 3px; height: 44px; }
+.travel-route-seg {
+  --seg-hue: 210;
+  flex-basis: 0; min-width: 6px;
+  border-radius: var(--radius-s);
+  background: linear-gradient(160deg, hsla(var(--seg-hue), 70%, 55%, 0.45), hsla(var(--seg-hue), 70%, 55%, 0.18));
+  border: 1px solid hsla(var(--seg-hue), 60%, 55%, 0.5);
+  display: flex; align-items: center; justify-content: center; overflow: hidden;
+}
+.travel-route-seg.is-gap {
+  background: repeating-linear-gradient(135deg, transparent 0 6px, rgba(var(--color-red-rgb), 0.18) 6px 12px);
+  border: 1px dashed rgba(var(--color-red-rgb), 0.55);
+}
+.travel-route-label { font-size: var(--font-ui-smaller); font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 4px; }
+.travel-route-label a.internal-link { color: var(--text-normal); text-decoration: none; }
+.travel-route-nights { color: var(--text-muted); font-weight: 500; }
+.travel-route-marks { position: relative; height: 22px; }
+.travel-route-mark { position: absolute; transform: translateX(-50%); font-size: 1.05em; cursor: default; }
+.travel-route-today { position: absolute; top: -50px; height: 68px; width: 2px; background: var(--interactive-accent); transform: translateX(-1px); border-radius: 1px; }
+.travel-route-ends { display: flex; justify-content: space-between; }
+
+/* documents */
+.travel-docs { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: var(--size-4-3); }
+.travel-docs-group { display: flex; flex-direction: column; gap: 2px; }
+
+/* itinerary edit pop-up */
+.travel-editor { display: flex; flex-direction: column; gap: var(--size-4-2); }
+.travel-editor-row { display: grid; grid-template-columns: 8.5em 1fr; align-items: center; gap: var(--size-4-2); }
+.travel-editor-row label { color: var(--text-muted); font-size: var(--font-ui-small); }
+.travel-editor-input { display: flex; gap: var(--size-4-2); }
+.travel-editor-input input, .travel-editor-input select { flex: 1; min-width: 0; }
+.travel-editor-transport { display: flex; flex-direction: column; gap: var(--size-4-2); padding: var(--size-4-2); border: 1px solid var(--background-modifier-border); border-radius: var(--radius-m); }
+.is-phone .travel-editor-row { grid-template-columns: 1fr; gap: 2px; }
+
+/* ---- Panels: several widgets in one Dataview block (98 - Meta/Views/Travel/panel.js) ----
+   .travel-box looks like a [!col|box] callout, so panel boxes and callout boxes match. */
+.travel-panel { display: flex; flex-direction: column; gap: var(--size-4-3); }
+.travel-panel.is-plain { gap: var(--size-4-2); }
+.travel-box {
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-m);
+  padding: var(--size-4-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-4-1);
+}
+.travel-box > *, .travel-box p, .travel-box > div > :first-child { margin: 0; }
+.travel-panel-item > *, .travel-panel-item p { margin-block: 0; }
+
+/* ---- Travel plugin widgets ---- */
+.travel-big { font-size: 1.8em; font-weight: 600; line-height: 1.1; }
+.travel-image-picker { width: min(960px, 92vw); }
+.travel-image-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--size-4-3); }
+.travel-image-cell img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radius-m); cursor: pointer; }
+.travel-image-cell div { text-align: center; margin-top: var(--size-4-1); }
+.travel-settings-json { width: 100%; min-height: 12em; font-family: var(--font-monospace); font-size: var(--font-ui-smaller); }
+.travel-settings-json.is-invalid { border-color: var(--text-error); }
+/* "Travel List" Bases view (pilot, see Widgets vs Bases) */
+.travel-bases-list { display: flex; flex-direction: column; gap: 2px; padding: var(--size-4-1) 0; }
+.travel-bases-group { display: flex; flex-direction: column; gap: 2px; }
+.travel-bases-group + .travel-bases-group { margin-top: var(--size-4-2); }
+.travel-bases-group-key { font-weight: 600; }

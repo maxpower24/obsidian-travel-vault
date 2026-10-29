@@ -195,6 +195,7 @@ var BasesCardRedirect = class extends import_obsidian2.Plugin {
   async handleClick(evt) {
     try {
       if (evt.button !== 0 && evt.button !== 1) return;
+      if (evt.shiftKey) return;
       const targetEl = evt.target;
       if (!targetEl) return;
       if (this.isInteractive(targetEl)) return;
@@ -272,7 +273,7 @@ var BasesCardRedirect = class extends import_obsidian2.Plugin {
       const targetVal = fm[rule.targetProperty];
       const targetFile = this.resolveLinkToFile(targetVal);
       if (targetFile) return targetFile;
-      return null;
+      continue;
     }
     return null;
   }

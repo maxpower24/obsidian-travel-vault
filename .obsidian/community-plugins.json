@@ -1,10 +1,10 @@
 [
-  "bases-card-redirect",
+  "templater-obsidian",
+  "pretty-properties",
+  "obsidian-meta-bind-plugin",
   "folder-notes",
   "obsidian-map-view",
-  "buttons",
-  "templater-obsidian",
-  "obsidian-meta-bind-plugin",
-  "dataview",
-  "pretty-properties"
+  "vault-views",
+  "vault-core",
+  "travel"
 ]

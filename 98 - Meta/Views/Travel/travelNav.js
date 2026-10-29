@@ -39,7 +39,7 @@ module.exports = ({ dv, page, config, fn }) => {
 
     // ---- current trip (right side)
     const today = dv.date("today").toMillis();
-    const active = dv.pages()
+    const active = dv.pages(`"${config["Trips Folder"] ?? "05 - Areas/Travel/Trips"}"`)
         .where((t) => t.Type === "Trip" && !t.Cancelled && t.Start
             && millis(t.Start) <= today && (!t.End || millis(t.End) >= today))
         .sort((t) => millis(t.Start), "asc")
@@ -55,7 +55,7 @@ module.exports = ({ dv, page, config, fn }) => {
     let prev = null, next = null;
     const trip = fn.linkPage(page.Trip);
     if (page.Type === "Itinerary" && trip && page.Start) {
-        const stops = dv.pages()
+        const stops = dv.pages(`"${trip.file.folder}"`)
             .where((p) => p.Type === "Itinerary" && p.Start && pathOf(fn.linkPage(p.Trip)) === trip.file.path)
             .array()
             .sort((a, b) => dv.date(a.Start).toMillis() - dv.date(b.Start).toMillis() || a.file.name.localeCompare(b.file.name));

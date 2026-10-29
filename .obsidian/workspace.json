@@ -4,25 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "61f55b720d817998",
+        "id": "87c23c985023e974",
         "type": "tabs",
         "children": [
           {
-            "id": "f4aa5a3c2bf13e71",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "05 - Areas/Travel/Travel.md",
-                "mode": "preview",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Travel"
-            }
-          },
-          {
-            "id": "b6ed3ec0118a2932",
+            "id": "26a931d4416aa6c9",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -34,37 +20,8 @@
               "icon": "lucide-file",
               "title": "Tokyo, Japan"
             }
-          },
-          {
-            "id": "8154220e526cb4cb",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "05 - Areas/Travel/Cities & Regions/Canberra, Australia.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Canberra, Australia"
-            }
-          },
-          {
-            "id": "44f9dc850cd8550f",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "05 - Areas/Travel/Countries/Japan.md",
-                "mode": "preview",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Japan"
-            }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -98,7 +55,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "[\"Type\"]",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -201,22 +158,31 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "98 - Meta/Templates/Travel/Trip Template.md",
+                "file": "05 - Areas/Travel/Trips/Christmas 2026/Christmas 2026.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Trip Template"
+              "title": "Outline"
+            }
+          },
+          {
+            "id": "0ee53247708d5613",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 5
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -232,52 +198,53 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "8154220e526cb4cb",
+  "active": "26a931d4416aa6c9",
   "lastOpenFiles": [
+    "05 - Areas/Travel/Countries/Countries.md",
+    "05 - Areas/Travel/Cities & Regions/Kyoto, Japan.md",
     "05 - Areas/Travel/Cities & Regions/Tokyo, Japan.md",
     "05 - Areas/Travel/Cities & Regions/Canberra, Australia.md",
-    "05 - Areas/Travel/Countries/Japan.md",
+    "05 - Areas/Travel/Cities & Regions/Cities & Regions.md",
     "05 - Areas/Travel/Travel.md",
-    "05 - Areas/Travel/Cities & Regions/Kyoto, Japan.md",
-    "98 - Meta/Views/Travel/placeIcons.json",
-    "98 - Meta/Views/Travel/fromCountry.js",
-    "98 - Meta/Views/Travel/onThePlan.js",
-    "98 - Meta/Views/Travel/stillToDo.js",
-    "05 - Areas/Travel/Trips/Japan 2023/Japan 2023.md",
-    "05 - Areas/Travel/Trips/Someday Vietnam/Someday Vietnam.md",
-    "05 - Areas/Travel/Trips/Christmas 2026/2026 - Senso-ji morning.md",
-    "05 - Areas/Travel/Trips/Christmas 2026/Packing - Christmas 2026.md",
-    "05 - Areas/Travel/Trips/Japan 2023/2023 - Ichiran dinner.md",
-    "05 - Areas/Travel/Trips/Japan 2023/2023 - Tokyo stay.md",
+    "05 - Areas/05 - Areas.md",
     "05 - Areas/Travel/Trips/Christmas 2026/Christmas 2026.md",
-    "98 - Meta/Views/Travel/climate.js",
+    "05 - Areas/Travel/Trips/Trips.md",
+    "05 - Areas/Travel/Widgets vs Bases.md",
+    "98 - Meta/Databases/Travel/Comparison.base",
+    "98 - Meta/Templates/Travel/Country.md",
+    "98 - Meta/Templates/Travel/City.md",
+    "98 - Meta/Templates/Travel/Trip.md",
+    "98 - Meta/Templates/Travel/Packing List.md",
+    "98 - Meta/Templates/Travel/Itinerary.md",
+    "05 - Areas/Travel/Countries/Japan.md",
+    "05 - Areas/Travel/Trips/Christmas 2026/_Stress Test/Stress Item 200.md",
+    "05 - Areas/Travel/Trips/Christmas 2026/_Stress Test/Stress Item 199.md",
+    "05 - Areas/Travel/Trips/Christmas 2026/_Stress Test/Stress Item 198.md",
+    "05 - Areas/Travel/Trips/Christmas 2026/_Stress Test/Stress Item 197.md",
+    "05 - Areas/Travel/Trips/Christmas 2026/_Stress Test/Stress Item 196.md",
+    "05 - Areas/Travel/Trips/Christmas 2026/_Stress Test/Stress Item 195.md",
+    "05 - Areas/Travel/Trips/Christmas 2026/_Stress Test/Stress Item 194.md",
+    "05 - Areas/Travel/Trips/Christmas 2026/_Stress Test/Stress Item 193.md",
+    "05 - Areas/Travel/Trips/Christmas 2026/_Stress Test/Stress Item 192.md",
+    "05 - Areas/Travel/Trips/Christmas 2026/_Stress Test/Stress Item 191.md",
+    "05 - Areas/Travel/Trips/Christmas 2026/_Stress Test",
+    "05 - Areas/Travel/Places/_Stress Test",
+    "_Stress Test",
+    "98 - Meta/Views/Travel/lib/dom.js",
+    "98 - Meta/Views/Travel/lib/cache.js",
+    "_scripts/maptiler-test-output/5-cartodb.png",
+    "_scripts/maptiler-test-output",
+    "_scripts/maptiler-test.ps1",
+    "98 - Meta/Views/Travel/panel.js",
+    "06 - Resources/Images/Trips/Christmas 2026/Christmas 2026.jpg",
+    "06 - Resources/Images/Trips/Christmas 2026/Christmas 2026-2.jpg",
+    "06 - Resources/Images/Trips/Christmas 2026/Christmas 2026-1.jpg",
+    "06 - Resources/Images/Trips/Christmas 2026",
     "06 - Resources/Images/Cities & Regions/Tokyo, Japan/Tokyo, Japan-3.jpg",
     "06 - Resources/Images/Cities & Regions/Tokyo, Japan/Tokyo, Japan.jpg",
     "06 - Resources/Images/Cities & Regions/Tokyo, Japan/Tokyo, Japan-1.jpg",
-    "06 - Resources/Images/Cities & Regions/Tokyo, Japan",
     "06 - Resources/Images/Cities & Regions/Canberra, Australia/Canberra, Australia-3.jpg",
     "06 - Resources/Images/Cities & Regions/Canberra, Australia/Canberra, Australia-2.jpg",
-    "06 - Resources/Images/Cities & Regions/Canberra, Australia/Canberra, Australia.jpg",
-    "06 - Resources/Images/Cities & Regions/Canberra, Australia",
-    "06 - Resources/Images/Cities & Regions/Kyoto, Japan/Kyoto, Japan.jpg",
-    "06 - Resources/Images/Cities & Regions/Kyoto, Japan/Kyoto, Japan-2.jpg",
-    "06 - Resources/Images/Cities & Regions/Kyoto, Japan/Kyoto, Japan-1.jpg",
-    "06 - Resources/Images/Cities & Regions/Kyoto, Japan",
-    "06 - Resources/Images/Cities & Regions",
-    "98 - Meta/Views/Travel/weather.js",
-    "98 - Meta/Views/Travel/_README.md",
-    "98 - Meta/Templates/Travel/City Template.md",
-    "05 - Areas/Travel/Countries/Countries.md",
-    "05 - Areas/Travel/Places/Tsukiji Outer Market.md",
-    "05 - Areas/Travel/Trips/Trips.md",
-    "05 - Areas/Travel/Places/Places.md",
-    "05 - Areas/Travel/Cities & Regions/Cities & Regions.md",
-    "05 - Areas/05 - Areas.md",
-    "Home.md",
-    "05 - Areas/Travel/Countries/Vietnam.md",
-    "05 - Areas/Travel/Countries/Australia.md",
-    "06 - Resources/Images/Countries/VN/VN.jpg",
-    "98 - Meta/System/Travel/_config.md",
-    "06 - Resources/Google Places/Location added on 2026-10-26T16-05.md"
+    "06 - Resources/Images/Cities & Regions/Canberra, Australia/Canberra, Australia.jpg"
   ]
 }

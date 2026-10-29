@@ -185,11 +185,10 @@ cssclasses:
   - location-note
   - hide-properties
 ---
-\`\`\`dataviewjs
-await dv.view("${NAV_VIEW}")
+\`\`\`nav
 \`\`\`
-\`\`\`dataviewjs
-await dv.view("98 - Meta/Views/Travel/status", { field: "Country" })
+\`\`\`view
+Travel/status { field: "Country" }
 \`\`\`
 
 > [!columns|1-2.5-1 centre-first stretch]
@@ -205,21 +204,13 @@ await dv.view("98 - Meta/Views/Travel/status", { field: "Country" })
 > > > **Units** ${units}
 > > > **Names** ${c.names.official}${native ? ` · ${native}` : ""}
 > >
-> > > [!col|box]
-> > > \`\`\`dataviewjs
-> > > await dv.view("98 - Meta/Views/Travel/fx", { codes: ${JSON.stringify(currencyCodes)} })
-> > > \`\`\`
-> >
-> > > [!col|box]
-> > > \`\`\`dataviewjs
-> > > await dv.view("98 - Meta/Views/Travel/localTime", ${JSON.stringify({ tz: capitalTz, place: capital })})
-> > > \`\`\`
-> >
-> > > [!col|box]
-> > > **Holidays**
-> > > \`\`\`dataviewjs
-> > > await dv.view("98 - Meta/Views/Travel/holidays", { cc: "${code}" })
-> > > \`\`\`
+> > \`\`\`view
+> > Travel/panel { widgets: [
+> >     { name: "fx", input: { codes: ${JSON.stringify(currencyCodes)} } },
+> >     { name: "localTime", input: ${JSON.stringify({ tz: capitalTz, place: capital })} },
+> >     { name: "holidays", input: { cc: "${code}", title: "Holidays" } }
+> > ] }
+> > \`\`\`
 >
 > > [!col|fill]
 > > ${extract}
@@ -246,21 +237,13 @@ await dv.view("98 - Meta/Views/Travel/status", { field: "Country" })
 > > > **Visa** \`INPUT[text:Visa]\`
 > > > **Vaccine** \`INPUT[text:Vaccine]\`
 > >
-> > > [!col|box]
-> > > \`\`\`dataviewjs
-> > > await dv.view("98 - Meta/Views/Travel/onThePlan", { field: "Country", limit: 5 })
-> > > \`\`\`
-> >
-> > > [!col|box]
-> > > \`\`\`dataviewjs
-> > > await dv.view("98 - Meta/Views/Travel/history", { field: "Country" })
-> > > \`\`\`
-> >
-> > > [!col|box]
-> > > **Trips**
-> > > \`\`\`dataviewjs
-> > > await dv.view("98 - Meta/Views/Travel/trips", { field: "Country" })
-> > > \`\`\`
+> > \`\`\`view
+> > Travel/panel { widgets: [
+> >     { name: "onThePlan", input: { field: "Country", limit: 5 } },
+> >     { name: "history", input: { field: "Country" } },
+> >     { name: "trips", input: { field: "Country", title: "Trips" } }
+> > ] }
+> > \`\`\`
 
 ---
 
@@ -284,7 +267,7 @@ await dv.view("98 - Meta/Views/Travel/status", { field: "Country" })
 ---
 
 \`\`\`mapview
-${JSON.stringify({ name: "Default", mapZoom: 5, centerLat: centre?.lat ?? 0, centerLng: centre?.lon ?? 0, query: `linkedto:"${name}"`, chosenMapSource: MAP_SOURCE, autoFit: true, lock: false, showLinks: false, linkColor: "red", markerLabels: "off", embeddedHeight: 450 })}
+${JSON.stringify({ name: "Default", mapZoom: 5, centerLat: centre?.lat ?? 0, centerLng: centre?.lon ?? 0, query: `linkedto:"${name}" AND NOT path:"${cfg["Trips Folder"]}"`, chosenMapSource: MAP_SOURCE, autoFit: true, lock: false, showLinks: false, linkColor: "red", markerLabels: "off", embeddedHeight: 450 })}
 \`\`\`
 `;
 

@@ -6,6 +6,7 @@ Locale Type: "City"
 Banner: "[[06 - Resources/Images/Cities & Regions/Tokyo, Japan/Tokyo, Japan.jpg]]"
 Icon: "🏙️"
 Coordinates: "35.6764225,139.650027"
+Timezone: "Asia/Tokyo"
 Wishlist: false
 Transit Card: ""
 Airport Transfer: ""
@@ -13,17 +14,16 @@ Ride Share: ""
 Micromobility: ""
 Safety: ""
 My Notes: ""
-Last Refreshed: 2026-10-28
+Last Refreshed: 2026-10-29
 cssclasses:
   - full-width
   - location-note
   - hide-properties
 ---
-```dataviewjs
-await dv.view("98 - Meta/Views/nav")
+```nav
 ```
-```dataviewjs
-await dv.view("98 - Meta/Views/Travel/status", { field: "Locale" })
+```travel
+status
 ```
 
 > [!columns|1-2.5-1 centre-first stretch]
@@ -33,28 +33,36 @@ await dv.view("98 - Meta/Views/Travel/status", { field: "Locale" })
 > > > **State / Region** Tokyo
 > > > **Type** `INPUT[inlineSelect(option(City), option(Region), option(Island)):["Locale Type"]]`
 > > > **Population** 14,264,798 (2022)
-> >
-> > > [!col|box]
-> > > ```dataviewjs
-> > > await dv.view("98 - Meta/Views/Travel/fromCountry")
+> > >
+> > > ```meta-bind-button
+> > > label: Add to Trip
+> > > style: primary
+> > > action:
+> > >   type: command
+> > >   command: travel:add-to-trip
 > > > ```
 > >
 > > > [!col|box]
-> > > ```dataviewjs
-> > > await dv.view("98 - Meta/Views/Travel/localTime", {"tz":"Asia/Tokyo","place":"Tokyo"})
+> > > ```travel
+> > > fromCountry
 > > > ```
 > >
 > > > [!col|box]
-> > > ```dataviewjs
-> > > await dv.view("98 - Meta/Views/Travel/weather", {"lat":35.6764225,"lng":139.650027})
+> > > ```travel
+> > > localTime
+> > > ```
+> >
+> > > [!col|box]
+> > > ```travel
+> > > weather
 > > > ```
 >
 > > [!col|fill]
 > > Tokyo, officially the Tokyo Metropolis, is the capital and most populous city of Japan. The population of the city proper was over 14 million as of 2023. The Greater Tokyo Area, which includes Tokyo and parts of six neighboring prefectures, is the third-most populous metropolitan area in the world, with 33 million residents as of 2025.
 > > [Wikipedia](https://en.wikipedia.org/wiki/Tokyo)
 > >
-> > ```dataviewjs
-> > await dv.view("98 - Meta/Views/Travel/climate", {"months":[[9,0,51],[11,1,51],[14,5,143],[19,10,135],[23,14,154],[26,19,192],[30,23,178],[32,24,140],[28,21,208],[22,14,201],[17,8,83],[11,2,56]],"best":[false,false,false,true,false,false,false,false,false,false,false,false]})
+> > ```travel
+> > climate
 > > ```
 > >
 > > **Notes**
@@ -75,24 +83,24 @@ await dv.view("98 - Meta/Views/Travel/status", { field: "Locale" })
 > > > ```
 > >
 > > > [!col|box]
-> > > ```dataviewjs
-> > > await dv.view("98 - Meta/Views/Travel/onThePlan", { field: "Locale" })
+> > > ```travel
+> > > comingUp
 > > > ```
 > >
 > > > [!col|box]
-> > > ```dataviewjs
-> > > await dv.view("98 - Meta/Views/Travel/stillToDo", { field: "Locale" })
+> > > ```travel
+> > > yetToVisit
 > > > ```
 > >
 > > > [!col|box]
-> > > ```dataviewjs
-> > > await dv.view("98 - Meta/Views/Travel/history", { field: "Locale", stays: true })
+> > > ```travel
+> > > history
+> > > stays: true
 > > > ```
 > >
 > > > [!col|box]
-> > > **Trips**
-> > > ```dataviewjs
-> > > await dv.view("98 - Meta/Views/Travel/trips", { field: "Locale" })
+> > > ```travel
+> > > trips
 > > > ```
 
 ---
@@ -103,18 +111,18 @@ await dv.view("98 - Meta/Views/Travel/status", { field: "Locale" })
 > [!columns|1-1]
 > > [!col]
 > > #### Neighbourhoods
-> > ```dataviewjs
-> > await dv.view("98 - Meta/Views/Travel/neighbourhoods")
+> > ```travel
+> > neighbourhoods
 > > ```
 >
 > > [!col]
 > > #### Nearby Cities & Regions
-> > ```dataviewjs
-> > await dv.view("98 - Meta/Views/Travel/nearby")
+> > ```travel
+> > nearby
 > > ```
 
 ---
 
 ```mapview
-{"name":"Default","mapZoom":11,"centerLat":35.6764225,"centerLng":139.650027,"query":"linkedto:\"Tokyo, Japan\"","chosenMapSource":1,"autoFit":true,"lock":false,"showLinks":false,"linkColor":"red","markerLabels":"off","embeddedHeight":450}
+{"name":"Default","mapZoom":11,"centerLat":35.6764225,"centerLng":139.650027,"query":"linkedto:\"Tokyo, Japan\" AND NOT path:\"05 - Areas/Travel/Trips\"","chosenMapSource":1,"autoFit":true,"lock":false,"showLinks":false,"linkColor":"red","markerLabels":"off","embeddedHeight":450}
 ```

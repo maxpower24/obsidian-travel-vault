@@ -1,10 +1,13 @@
 // localTime.js — live clock compared with home. input: { tz: "Asia/Tokyo", place: "Tokyo" }
+// shared code, loaded once and kept in memory until the file changes
+const lib = async (n) => { const p = `98 - Meta/Views/Travel/lib/${n}.js`, f = app.vault.getAbstractFileByPath(p), libs = ((window.travelVault ??= {}).libs ??= {}); if (libs[n]?.mtime === f.stat.mtime) return libs[n].exports; const m = { exports: {} }; new Function("module", "exports", await app.vault.cachedRead(f))(m, m.exports); libs[n] = { mtime: f.stat.mtime, exports: m.exports }; return m.exports; };
+const D = (await lib("dom"))(app, dv.current().file.path);   // draws text directly (no markdown renderer)
 const cfg   = dv.page("98 - Meta/System/Travel/_config.md") ?? {};
 const HOME  = cfg["Home Timezone"] ?? "Australia/Melbourne";
 const HOME_NAME = cfg["Home City"] ?? HOME;
 const TZ    = input?.tz;
 const PLACE = input?.place ?? "";
-if (!TZ) { dv.paragraph("Local time unavailable"); return; }
+if (!TZ) { D.p(dv.container, "Local time unavailable"); return; }
 const off = (tz, d) => {
     const v = new Intl.DateTimeFormat("en-US", { timeZone: tz, timeZoneName: "shortOffset" }).formatToParts(d).find((p) => p.type === "timeZoneName").value;
     const m = v.match(/GMT([+-])(\d+)(?::(\d+))?/);

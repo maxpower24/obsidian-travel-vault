@@ -1,5 +1,5 @@
 {
- "_comment": "Place icons for travel widgets. Lookup order: the place's Primary Type (Google), then its Group, then the itinerary Subtype, then default. Edit freely.",
+ "_comment": "Icons for travel widgets. Places: Primary Type (Google), then Group, then the itinerary Subtype, then default. Transport legs use their Mode. Edit freely.",
  "types": {
   "bar": "🍺",
   "pub": "🍺",
@@ -96,5 +96,13 @@
   "Activity": "📍",
   "Transport": "🚆"
  },
- "default": "📍"
+ "default": "📍",
+ "modes": {
+  "Flight": "✈️",
+  "Train": "🚄",
+  "Bus": "🚌",
+  "Ferry": "⛴️",
+  "Cruise": "🛳️",
+  "Car": "🚗"
+ }
 }

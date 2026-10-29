@@ -61,10 +61,14 @@ if (mod) {
     const rulesPath = mod["Nav Rules"];
     if (rulesPath) {
         try {
-            const src = await app.vault.adapter.read(rulesPath);
-            const m = { exports: {} };
-            new Function("module", "exports", src)(m, m.exports);
-            result = await m.exports({ dv, page, config: mod, fn });
+            const rf = app.vault.getAbstractFileByPath(rulesPath);
+            const cache = ((window.travelVault ??= {}).nav ??= {});
+            if (cache[rulesPath]?.mtime !== rf.stat.mtime) {
+                const m = { exports: {} };
+                new Function("module", "exports", await app.vault.cachedRead(rf))(m, m.exports);
+                cache[rulesPath] = { mtime: rf.stat.mtime, rules: m.exports };
+            }
+            result = await cache[rulesPath].rules({ dv, page, config: mod, fn });
         } catch (e) {
             console.error(`nav: rules failed (${rulesPath})`, e);
         }

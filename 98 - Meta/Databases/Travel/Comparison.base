@@ -1,0 +1,53 @@
+# Pilot for "Widgets vs Bases": the four list widgets as "Travel List" views, all for Tokyo so they can
+# sit next to the widgets. Used for real, each view would filter on this.file instead of Tokyo and be
+# embedded in the city / country template.
+filters:
+  and:
+    - file.inFolder("05 - Areas/Travel")
+views:
+  - type: travel-list
+    name: Coming Up
+    heading: Coming Up
+    filters:
+      and:
+        - note.Type == "Itinerary"
+        - file.hasLink(link("Tokyo, Japan"))
+        - '!note.Start.isEmpty()'
+        - 'date(if(note.End.isEmpty(), note.Start, note.End)) >= today()'
+    sort:
+      - property: note.Start
+        direction: ASC
+    limit: 6
+  - type: travel-list
+    name: Yet to Visit
+    heading: Yet to Visit
+    tick: true
+    filters:
+      and:
+        - note.Type == "Place"
+        - file.hasLink(link("Tokyo, Japan"))
+        - note.Visited != true
+    sort:
+      - property: note.Rating
+        direction: DESC
+    limit: 8
+  - type: travel-list
+    name: Trips
+    heading: Trips
+    filters:
+      and:
+        - note.Type == "Trip"
+        - 'file.backlinks.filter(value.asFile().properties.Type == "Itinerary" && value.asFile().hasLink(link("Tokyo, Japan"))).length > 0'
+    sort:
+      - property: note.Start
+        direction: DESC
+  - type: travel-list
+    name: Neighbourhoods
+    filters:
+      and:
+        - note.Type == "Place"
+        - file.hasLink(link("Tokyo, Japan"))
+        - '!note.Area.isEmpty()'
+    groupBy:
+      property: note.Area
+      direction: ASC

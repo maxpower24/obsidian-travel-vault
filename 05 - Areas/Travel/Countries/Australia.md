@@ -3,6 +3,8 @@ Type: Country
 Country Code: "AU"
 Region: "Australia and New Zealand"
 Currency Codes: ["AUD"]
+Capital: "[[Canberra, Australia]]"
+Timezone: "Australia/Sydney"
 Banner: "[[06 - Resources/Images/Countries/AU/AU.jpg]]"
 Icon: "[[06 - Resources/Images/Icons/Flags/AU.svg]]"
 Wishlist: false
@@ -19,11 +21,10 @@ cssclasses:
   - location-note
   - hide-properties
 ---
-```dataviewjs
-await dv.view("98 - Meta/Views/nav")
+```nav
 ```
-```dataviewjs
-await dv.view("98 - Meta/Views/Travel/status", { field: "Country" })
+```travel
+status
 ```
 
 > [!columns|1-2.5-1 centre-first stretch]
@@ -40,19 +41,18 @@ await dv.view("98 - Meta/Views/Travel/status", { field: "Country" })
 > > > **Names** Commonwealth of Australia · Australia
 > >
 > > > [!col|box]
-> > > ```dataviewjs
-> > > await dv.view("98 - Meta/Views/Travel/fx", { codes: ["AUD"] })
+> > > ```travel
+> > > fx
 > > > ```
 > >
 > > > [!col|box]
-> > > ```dataviewjs
-> > > await dv.view("98 - Meta/Views/Travel/localTime", {"tz":"Australia/Sydney","place":"Canberra"})
+> > > ```travel
+> > > localTime
 > > > ```
 > >
 > > > [!col|box]
-> > > **Holidays**
-> > > ```dataviewjs
-> > > await dv.view("98 - Meta/Views/Travel/holidays", { cc: "AU" })
+> > > ```travel
+> > > holidays
 > > > ```
 >
 > > [!col|fill]
@@ -81,19 +81,19 @@ await dv.view("98 - Meta/Views/Travel/status", { field: "Country" })
 > > > **Vaccine** `INPUT[text:Vaccine]`
 > >
 > > > [!col|box]
-> > > ```dataviewjs
-> > > await dv.view("98 - Meta/Views/Travel/onThePlan", { field: "Country", limit: 5 })
+> > > ```travel
+> > > comingUp
+> > > limit: 5
 > > > ```
 > >
 > > > [!col|box]
-> > > ```dataviewjs
-> > > await dv.view("98 - Meta/Views/Travel/history", { field: "Country" })
+> > > ```travel
+> > > history
 > > > ```
 > >
 > > > [!col|box]
-> > > **Trips**
-> > > ```dataviewjs
-> > > await dv.view("98 - Meta/Views/Travel/trips", { field: "Country" })
+> > > ```travel
+> > > trips
 > > > ```
 
 ---
@@ -118,5 +118,5 @@ await dv.view("98 - Meta/Views/Travel/status", { field: "Country" })
 ---
 
 ```mapview
-{"name":"Default","mapZoom":5,"centerLat":-25,"centerLng":133,"query":"linkedto:\"Australia\"","chosenMapSource":1,"autoFit":true,"lock":false,"showLinks":false,"linkColor":"red","markerLabels":"off","embeddedHeight":450}
+{"name":"Default","mapZoom":5,"centerLat":-25,"centerLng":133,"query":"linkedto:\"Australia\" AND NOT path:\"05 - Areas/Travel/Trips\"","chosenMapSource":1,"autoFit":true,"lock":false,"showLinks":false,"linkColor":"red","markerLabels":"off","embeddedHeight":450}
 ```

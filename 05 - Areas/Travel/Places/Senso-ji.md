@@ -11,7 +11,14 @@ Price Level:
 Last Visited:
 location: "35.7148,139.7967"
 ---
-```dataviewjs
-await dv.view("98 - Meta/Views/nav")
+```nav
 ```
 Visited `INPUT[toggle:Visited]`
+
+```meta-bind-button
+label: Add to Trip
+style: primary
+action:
+  type: command
+  command: travel:add-to-trip
+```

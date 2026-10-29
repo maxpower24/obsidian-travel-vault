@@ -19,11 +19,10 @@ cssclasses:
   - location-note
   - hide-properties
 ---
-```dataviewjs
-await dv.view("98 - Meta/Views/nav")
+```nav
 ```
-```dataviewjs
-await dv.view("98 - Meta/Views/Travel/status", { field: "Locale" })
+```travel
+status
 ```
 
 > [!columns|1-2.5-1 centre-first stretch]
@@ -35,26 +34,26 @@ await dv.view("98 - Meta/Views/Travel/status", { field: "Locale" })
 > > > **Population** —
 > >
 > > > [!col|box]
-> > > ```dataviewjs
-> > > await dv.view("98 - Meta/Views/Travel/fromCountry")
+> > > ```travel
+> > > fromCountry
 > > > ```
 > >
 > > > [!col|box]
-> > > ```dataviewjs
-> > > await dv.view("98 - Meta/Views/Travel/localTime", {"tz":"Australia/Sydney","place":"Canberra"})
+> > > ```travel
+> > > localTime
 > > > ```
 > >
 > > > [!col|box]
-> > > ```dataviewjs
-> > > await dv.view("98 - Meta/Views/Travel/weather", {"lat":-35.2801846,"lng":149.13103239999998})
+> > > ```travel
+> > > weather
 > > > ```
 >
 > > [!col|fill]
 > > 
 > > 
 > >
-> > ```dataviewjs
-> > await dv.view("98 - Meta/Views/Travel/climate", {"months":[[28,15,77],[26,14,50],[24,13,62],[20,9,44],[15,4,47],[11,2,54],[11,2,45],[12,2,56],[16,4,57],[19,7,62],[22,10,88],[26,13,71]],"best":[false,true,false,true,false,false,false,false,false,false,false,false]})
+> > ```travel
+> > climate
 > > ```
 > >
 > > **Notes**
@@ -75,24 +74,24 @@ await dv.view("98 - Meta/Views/Travel/status", { field: "Locale" })
 > > > ```
 > >
 > > > [!col|box]
-> > > ```dataviewjs
-> > > await dv.view("98 - Meta/Views/Travel/onThePlan", { field: "Locale" })
+> > > ```travel
+> > > comingUp
 > > > ```
 > >
 > > > [!col|box]
-> > > ```dataviewjs
-> > > await dv.view("98 - Meta/Views/Travel/stillToDo", { field: "Locale" })
+> > > ```travel
+> > > yetToVisit
 > > > ```
 > >
 > > > [!col|box]
-> > > ```dataviewjs
-> > > await dv.view("98 - Meta/Views/Travel/history", { field: "Locale", stays: true })
+> > > ```travel
+> > > history
+> > > stays: true
 > > > ```
 > >
 > > > [!col|box]
-> > > **Trips**
-> > > ```dataviewjs
-> > > await dv.view("98 - Meta/Views/Travel/trips", { field: "Locale" })
+> > > ```travel
+> > > trips
 > > > ```
 
 ---
@@ -103,18 +102,18 @@ await dv.view("98 - Meta/Views/Travel/status", { field: "Locale" })
 > [!columns|1-1]
 > > [!col]
 > > #### Neighbourhoods
-> > ```dataviewjs
-> > await dv.view("98 - Meta/Views/Travel/neighbourhoods")
+> > ```travel
+> > neighbourhoods
 > > ```
 >
 > > [!col]
 > > #### Nearby Cities & Regions
-> > ```dataviewjs
-> > await dv.view("98 - Meta/Views/Travel/nearby")
+> > ```travel
+> > nearby
 > > ```
 
 ---
 
 ```mapview
-{"name":"Default","mapZoom":11,"centerLat":-35.2801846,"centerLng":149.13103239999998,"query":"linkedto:\"Canberra, Australia\"","chosenMapSource":1,"autoFit":true,"lock":false,"showLinks":false,"linkColor":"red","markerLabels":"off","embeddedHeight":450}
+{"name":"Default","mapZoom":11,"centerLat":-35.2801846,"centerLng":149.13103239999998,"query":"linkedto:\"Canberra, Australia\" AND NOT path:\"05 - Areas/Travel/Trips\"","chosenMapSource":1,"autoFit":true,"lock":false,"showLinks":false,"linkColor":"red","markerLabels":"off","embeddedHeight":450}
 ```

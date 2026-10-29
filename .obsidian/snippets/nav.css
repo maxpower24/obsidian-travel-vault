@@ -1,4 +1,4 @@
-/* nav.css — shared navigation bar rendered by 98 - Meta/Views/nav.js */
+/* nav.css — shared navigation bar (```nav blocks, drawn by the Vault Core plugin) */
 .vault-nav {
   font-size: var(--font-ui-small);
   color: var(--text-muted);
@@ -19,4 +19,4 @@
 .vault-nav-current { color: var(--text-normal); font-weight: 600; }
 .vault-nav a.internal-link { color: var(--text-muted); text-decoration: none; }
 .vault-nav a.internal-link:hover { color: var(--text-accent); text-decoration: underline; }
-.block-language-dataviewjs:has(> .vault-nav) { margin-bottom: 0; }
+.block-language-nav { margin-bottom: 0; }

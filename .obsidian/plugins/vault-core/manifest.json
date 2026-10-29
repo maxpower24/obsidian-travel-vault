@@ -1,0 +1,9 @@
+{
+  "id": "vault-core",
+  "name": "Vault Core",
+  "version": "0.1.0",
+  "minAppVersion": "1.11.4",
+  "description": "Shared parts of Max's vault: the nav bar on every module note, and developer tools for module plugins.",
+  "author": "Max",
+  "isDesktopOnly": false
+}

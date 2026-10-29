@@ -1,0 +1,11 @@
+{
+  "redirectCssClass": "card-redirect",
+  "redirectFolders": [],
+  "sourceProperty": "link",
+  "rules": [
+    { "matchProperty": "Subtype", "matchValue": "Transport", "targetProperty": "To" },
+    { "matchProperty": "Type", "matchValue": "Itinerary", "targetProperty": "Place" },
+    { "matchProperty": "Type", "matchValue": "Itinerary", "targetProperty": "Locale" },
+    { "matchProperty": "Type", "matchValue": "Itinerary", "targetProperty": "Country" }
+  ]
+}

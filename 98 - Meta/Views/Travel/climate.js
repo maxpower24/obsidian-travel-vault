@@ -1,5 +1,6 @@
 // climate.js — best time to visit: 12 month tiles (2 rows × 6), from averages calculated by City Template.
 // input: { months: [[high, low, rainMm] ×12], best: [bool ×12] }
+const linksHere = () => dv.pages(`[[${dv.current().file.path.replace(/\.md$/, "")}]]`);   // notes linking to this one (from the index, no vault scan)
 const months = input?.months;
 const best   = input?.best ?? [];
 const box = dv.el("div", "", { cls: "travel-climate" });
@@ -22,7 +23,7 @@ box.createEl("small", { text: "A guide: mild highs (18–28°) and below-average
 // months with a trip here (itinerary notes on this locale)
 const cur = dv.current();
 const here = (l) => l && dv.page(l)?.file.path === cur.file.path;
-const tripMonths = new Set(dv.pages().where((p) => p.Type === "Itinerary" && here(p.Locale) && p.Start)
+const tripMonths = new Set(linksHere().where((p) => p.Type === "Itinerary" && here(p.Locale) && p.Start)
     .map((p) => dv.date(p.Start).month - 1).array());
 const thisMonth = new Date().getMonth();
 

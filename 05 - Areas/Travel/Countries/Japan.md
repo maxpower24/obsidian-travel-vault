@@ -3,6 +3,8 @@ Type: Country
 Country Code: "JP"
 Region: "Eastern Asia"
 Currency Codes: ["JPY"]
+Capital: "[[Tokyo, Japan]]"
+Timezone: "Asia/Tokyo"
 Banner: "[[06 - Resources/Images/Countries/JP/JP.jpg]]"
 Icon: "[[06 - Resources/Images/Icons/Flags/JP.svg]]"
 Wishlist: false
@@ -13,17 +15,16 @@ Tipping: "Considered rude"
 Visa: "Not required"
 Vaccine: "Rural only"
 My Notes: ""
-Last Refreshed: 2026-10-28
+Last Refreshed: 2026-10-29
 cssclasses:
   - full-width
   - location-note
   - hide-properties
 ---
-```dataviewjs
-await dv.view("98 - Meta/Views/nav")
+```nav
 ```
-```dataviewjs
-await dv.view("98 - Meta/Views/Travel/status", { field: "Country" })
+```travel
+status
 ```
 
 > [!columns|1-2.5-1 centre-first stretch]
@@ -40,19 +41,18 @@ await dv.view("98 - Meta/Views/Travel/status", { field: "Country" })
 > > > **Names** Japan · 日本
 > >
 > > > [!col|box]
-> > > ```dataviewjs
-> > > await dv.view("98 - Meta/Views/Travel/fx", { codes: ["JPY"] })
+> > > ```travel
+> > > fx
 > > > ```
 > >
 > > > [!col|box]
-> > > ```dataviewjs
-> > > await dv.view("98 - Meta/Views/Travel/localTime", {"tz":"Asia/Tokyo","place":"Tokyo"})
+> > > ```travel
+> > > localTime
 > > > ```
 > >
 > > > [!col|box]
-> > > **Holidays**
-> > > ```dataviewjs
-> > > await dv.view("98 - Meta/Views/Travel/holidays", { cc: "JP" })
+> > > ```travel
+> > > holidays
 > > > ```
 >
 > > [!col|fill]
@@ -81,19 +81,19 @@ await dv.view("98 - Meta/Views/Travel/status", { field: "Country" })
 > > > **Vaccine** `INPUT[text:Vaccine]`
 > >
 > > > [!col|box]
-> > > ```dataviewjs
-> > > await dv.view("98 - Meta/Views/Travel/onThePlan", { field: "Country", limit: 5 })
+> > > ```travel
+> > > comingUp
+> > > limit: 5
 > > > ```
 > >
 > > > [!col|box]
-> > > ```dataviewjs
-> > > await dv.view("98 - Meta/Views/Travel/history", { field: "Country" })
+> > > ```travel
+> > > history
 > > > ```
 > >
 > > > [!col|box]
-> > > **Trips**
-> > > ```dataviewjs
-> > > await dv.view("98 - Meta/Views/Travel/trips", { field: "Country" })
+> > > ```travel
+> > > trips
 > > > ```
 
 ---
@@ -118,5 +118,5 @@ await dv.view("98 - Meta/Views/Travel/status", { field: "Country" })
 ---
 
 ```mapview
-{"name":"Default","mapZoom":5,"centerLat":36,"centerLng":138,"query":"linkedto:\"Japan\"","chosenMapSource":1,"autoFit":true,"lock":false,"showLinks":false,"linkColor":"red","markerLabels":"off","embeddedHeight":450}
+{"name":"Default","mapZoom":5,"centerLat":36,"centerLng":138,"query":"linkedto:\"Japan\" AND NOT path:\"05 - Areas/Travel/Trips\"","chosenMapSource":1,"autoFit":true,"lock":false,"showLinks":false,"linkColor":"red","markerLabels":"off","embeddedHeight":450}
 ```

@@ -1,22 +1,10 @@
 <%*
 /**
-- Trip Template
-- Triggers the travel orchestrator to:
-- - Prompt for a trip name
-- - Check uniqueness within the Trips folder
-- - Create the trip folder
-- - Move and rename this note into the new folder as the trip dashboard
-
-- CONFIG_PATH points to the travel domain config note.
-- Update this path here if the config file is ever relocated within the vault or if you decide to use an alternative folder structure or naming convention.
-*/
-
+ * Trip Template — run by the "New Trip" button (Meta Bind templaterCreateNote in the Trips folder).
+ * Asks for the trip name and dates, moves this new note to <Trips>/<Name>/<Name>.md, creates the
+ * packing note and the trip's documents folder, and writes the trip note.
+ * The content is returned through tR because Templater writes the template's output into the new note.
+ */
 const CONFIG_PATH = "98 - Meta/System/Travel/_config.md";
-
-const travel = tp.user.travelOrchestrator(tp);
-
-await travel.createNewTrip(CONFIG_PATH);
+tR += await tp.user.travelOrchestrator(tp).createNewTrip(CONFIG_PATH);
 %>
-```dataviewjs
-await dv.view("98 - Meta/Views/nav")
-```

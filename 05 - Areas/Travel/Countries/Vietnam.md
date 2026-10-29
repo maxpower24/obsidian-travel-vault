@@ -2,6 +2,8 @@
 Type: Country
 Country Code: "VN"
 Region: "South-Eastern Asia"
+Capital: "[[Hanoi, Vietnam]]"
+Timezone: "Asia/Saigon"
 Banner: "[[06 - Resources/Images/Countries/VN/VN.jpg]]"
 Icon: "[[06 - Resources/Images/Icons/Flags/VN.svg]]"
 Wishlist: true
@@ -18,11 +20,10 @@ cssclasses:
   - location-note
   - hide-properties
 ---
-```dataviewjs
-await dv.view("98 - Meta/Views/nav")
+```nav
 ```
-```dataviewjs
-await dv.view("98 - Meta/Views/Travel/status", { field: "Country" })
+```travel
+status
 ```
 
 > [!columns|1-2.5-1 centre-first stretch]
@@ -39,19 +40,18 @@ await dv.view("98 - Meta/Views/Travel/status", { field: "Country" })
 > > > **Names** Socialist Republic of Vietnam · Việt Nam
 > >
 > > > [!col|box]
-> > > ```dataviewjs
-> > > await dv.view("98 - Meta/Views/Travel/fx", { codes: ["VND"] })
+> > > ```travel
+> > > fx
 > > > ```
 > >
 > > > [!col|box]
-> > > ```dataviewjs
-> > > await dv.view("98 - Meta/Views/Travel/localTime", {"tz":"Asia/Saigon","place":"Hanoi"})
+> > > ```travel
+> > > localTime
 > > > ```
 > >
 > > > [!col|box]
-> > > **Holidays**
-> > > ```dataviewjs
-> > > await dv.view("98 - Meta/Views/Travel/holidays", { cc: "VN" })
+> > > ```travel
+> > > holidays
 > > > ```
 >
 > > [!col|fill]
@@ -80,14 +80,13 @@ await dv.view("98 - Meta/Views/Travel/status", { field: "Country" })
 > > > **Vaccine** `INPUT[text:Vaccine]`
 > >
 > > > [!col|box]
-> > > ```dataviewjs
-> > > await dv.view("98 - Meta/Views/Travel/history", { field: "Country" })
+> > > ```travel
+> > > history
 > > > ```
 > >
 > > > [!col|box]
-> > > **Trips**
-> > > ```dataviewjs
-> > > await dv.view("98 - Meta/Views/Travel/trips", { field: "Country" })
+> > > ```travel
+> > > trips
 > > > ```
 
 ---
@@ -112,5 +111,5 @@ await dv.view("98 - Meta/Views/Travel/status", { field: "Country" })
 ---
 
 ```mapview
-{"name":"Default","mapZoom":5,"centerLat":16,"centerLng":108,"query":"linkedto:\"Vietnam\"","chosenMapSource":1,"autoFit":true,"lock":false,"showLinks":false,"linkColor":"red","markerLabels":"off","embeddedHeight":450}
+{"name":"Default","mapZoom":5,"centerLat":16,"centerLng":108,"query":"linkedto:\"Vietnam\" AND NOT path:\"05 - Areas/Travel/Trips\"","chosenMapSource":1,"autoFit":true,"lock":false,"showLinks":false,"linkColor":"red","markerLabels":"off","embeddedHeight":450}
 ```

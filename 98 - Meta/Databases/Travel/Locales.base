@@ -1,5 +1,6 @@
 filters:
   and:
+    - file.inFolder("05 - Areas/Travel/Cities & Regions")
     - note.Type == "Locale"
     - file.hasLink(this.file)
 formulas:

@@ -1,0 +1,47 @@
+# Countries, cities and saved-but-unscheduled places for the trip this base is embedded in,
+# found through the trip's itinerary notes (nothing is listed by hand).
+filters:
+  and:
+    - file.inFolder("05 - Areas/Travel")
+    - or:
+        - note.Type == "Country"
+        - note.Type == "Locale"
+        - note.Type == "Place"
+formulas:
+  onTrip: 'file.backlinks.filter(value.asFile().properties.Type == "Itinerary" && value.asFile().hasLink(this.file)).length > 0'
+  cityOnTrip: 'if(note.Locale, note.Locale.asFile().backlinks.filter(value.asFile().properties.Type == "Itinerary" && value.asFile().hasLink(this.file)).length > 0, false)'
+views:
+  - type: cards
+    name: Countries
+    image: note.Banner
+    filters:
+      and:
+        - note.Type == "Country"
+        - formula.onTrip
+    order:
+      - file.name
+      - note.Region
+  - type: cards
+    name: Cities & Regions
+    image: note.Banner
+    filters:
+      and:
+        - note.Type == "Locale"
+        - formula.onTrip
+    order:
+      - file.name
+      - note["Locale Type"]
+  - type: cards
+    name: Places to Consider
+    image: note.Banner
+    filters:
+      and:
+        - note.Type == "Place"
+        - formula.cityOnTrip
+        - '!formula.onTrip'
+    order:
+      - file.name
+      - note.Rating
+    sort:
+      - property: note.Rating
+        direction: DESC

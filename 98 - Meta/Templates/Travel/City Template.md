@@ -217,6 +217,7 @@ Locale Type: ${q(localeType)}
 ${BANNER_KEY}: ${q(cover ? `[[${cover}]]` : "")}
 ${ICON_KEY}: ${q(TYPE_ICONS[localeType] ?? "")}
 Coordinates: ${q(coords)}
+Timezone: ${q(tz || keep("Timezone"))}
 Wishlist: ${keep("Wishlist", false)}
 Transit Card: ${q(keep("Transit Card"))}
 Airport Transfer: ${q(keep("Airport Transfer"))}
@@ -230,11 +231,10 @@ cssclasses:
   - location-note
   - hide-properties
 ---
-\`\`\`dataviewjs
-await dv.view("${NAV_VIEW}")
+\`\`\`nav
 \`\`\`
-\`\`\`dataviewjs
-await dv.view("${VIEWS}/status", { field: "Locale" })
+\`\`\`view
+Travel/status { field: "Locale" }
 \`\`\`
 
 > [!columns|1-2.5-1 centre-first stretch]
@@ -244,28 +244,29 @@ await dv.view("${VIEWS}/status", { field: "Locale" })
 > > > **State / Region** ${state || "—"}
 > > > **Type** \`INPUT[inlineSelect(${opts(Object.keys(TYPE_ICONS))}):["Locale Type"]]\`
 > > > **Population** ${population || "—"}
-> >
-> > > [!col|box]
-> > > \`\`\`dataviewjs
-> > > await dv.view("${VIEWS}/fromCountry")
+> > >
+> > > \`\`\`meta-bind-button
+> > > label: Add to Trip
+> > > style: primary
+> > > action:
+> > >   type: command
+> > >   command: travel:add-to-trip
 > > > \`\`\`
 > >
-> > > [!col|box]
-> > > \`\`\`dataviewjs
-> > > await dv.view("${VIEWS}/localTime", ${JSON.stringify({ tz, place: placeName })})
-> > > \`\`\`
-> >
-> > > [!col|box]
-> > > \`\`\`dataviewjs
-> > > await dv.view("${VIEWS}/weather", ${JSON.stringify({ lat, lng })})
-> > > \`\`\`
+> > \`\`\`view
+> > Travel/panel { widgets: [
+> >     { name: "fromCountry" },
+> >     { name: "localTime", input: ${JSON.stringify({ tz, place: placeName })} },
+> >     { name: "weather", input: ${JSON.stringify({ lat, lng })} }
+> > ] }
+> > \`\`\`
 >
 > > [!col|fill]
 > > ${extract}
 > > ${wikiUrl ? `[Wikipedia](${wikiUrl})` : ""}
 > >
-> > \`\`\`dataviewjs
-> > await dv.view("${VIEWS}/climate", ${JSON.stringify(climate)})
+> > \`\`\`view
+> > Travel/climate ${JSON.stringify(climate)}
 > > \`\`\`
 > >
 > > **Notes**
@@ -285,26 +286,14 @@ await dv.view("${VIEWS}/status", { field: "Locale" })
 > > > INPUT[textArea(class(travel-safety)):Safety]
 > > > \`\`\`
 > >
-> > > [!col|box]
-> > > \`\`\`dataviewjs
-> > > await dv.view("${VIEWS}/onThePlan", { field: "Locale" })
-> > > \`\`\`
-> >
-> > > [!col|box]
-> > > \`\`\`dataviewjs
-> > > await dv.view("${VIEWS}/stillToDo", { field: "Locale" })
-> > > \`\`\`
-> >
-> > > [!col|box]
-> > > \`\`\`dataviewjs
-> > > await dv.view("${VIEWS}/history", { field: "Locale", stays: true })
-> > > \`\`\`
-> >
-> > > [!col|box]
-> > > **Trips**
-> > > \`\`\`dataviewjs
-> > > await dv.view("${VIEWS}/trips", { field: "Locale" })
-> > > \`\`\`
+> > \`\`\`view
+> > Travel/panel { widgets: [
+> >     { name: "onThePlan", input: { field: "Locale" } },
+> >     { name: "stillToDo", input: { field: "Locale" } },
+> >     { name: "history", input: { field: "Locale", stays: true } },
+> >     { name: "trips", input: { field: "Locale", title: "Trips" } }
+> > ] }
+> > \`\`\`
 
 ---
 
@@ -314,20 +303,20 @@ await dv.view("${VIEWS}/status", { field: "Locale" })
 > [!columns|1-1]
 > > [!col]
 > > #### Neighbourhoods
-> > \`\`\`dataviewjs
-> > await dv.view("${VIEWS}/neighbourhoods")
+> > \`\`\`view
+> > Travel/neighbourhoods
 > > \`\`\`
 >
 > > [!col]
 > > #### Nearby Cities & Regions
-> > \`\`\`dataviewjs
-> > await dv.view("${VIEWS}/nearby")
+> > \`\`\`view
+> > Travel/nearby
 > > \`\`\`
 
 ---
 
 \`\`\`mapview
-${JSON.stringify({ name: "Default", mapZoom: 11, centerLat: lat ?? 0, centerLng: lng ?? 0, query: `linkedto:"${noteName}"`, chosenMapSource: MAP_SOURCE, autoFit: true, lock: false, showLinks: false, linkColor: "red", markerLabels: "off", embeddedHeight: 450 })}
+${JSON.stringify({ name: "Default", mapZoom: 11, centerLat: lat ?? 0, centerLng: lng ?? 0, query: `linkedto:"${noteName}" AND NOT path:"${cfg["Trips Folder"]}"`, chosenMapSource: MAP_SOURCE, autoFit: true, lock: false, showLinks: false, linkColor: "red", markerLabels: "off", embeddedHeight: 450 })}
 \`\`\`
 `;
 

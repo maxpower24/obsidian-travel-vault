@@ -1,5 +1,4 @@
-```dataviewjs
-await dv.view("98 - Meta/Views/nav")
+```nav
 ```
 Travel dashboard.
 
@@ -7,25 +6,22 @@ Travel dashboard.
 label: New Trip
 style: primary
 action:
-  type: templaterCreateNote
-  templateFile: "98 - Meta/Templates/Travel/Trip Template.md"
-  folderPath: "05 - Areas/Travel/Trips"
-  fileName: "New Trip"
-  openNote: true
+  type: command
+  command: travel:new-trip
 ```
 ```meta-bind-button
 label: New / Refresh Country
 style: default
 action:
-  type: runTemplaterFile
-  templateFile: "98 - Meta/Templates/Travel/Country Template.md"
+  type: command
+  command: travel:build-country
 ```
 ```meta-bind-button
 label: New / Refresh City or Region
 style: default
 action:
-  type: runTemplaterFile
-  templateFile: "98 - Meta/Templates/Travel/City Template.md"
+  type: command
+  command: travel:build-city
 ```
 
 Planned items:

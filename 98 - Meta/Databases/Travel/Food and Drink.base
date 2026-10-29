@@ -1,5 +1,6 @@
 filters:
   and:
+    - file.inFolder("05 - Areas/Travel/Places")
     - note.Type == "Place"
     - file.hasLink(this.file)
     - formula.section == "Food & Drink"

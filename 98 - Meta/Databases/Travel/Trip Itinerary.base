@@ -1,0 +1,80 @@
+# Itinerary notes of the trip this base is embedded in. Cards carry a hidden `link` column so the
+# bases-card-redirect plugin can send clicks to the place / city / destination (Shift-click = the note itself).
+filters:
+  and:
+    - file.inFolder("05 - Areas/Travel/Trips")
+    - note.Type == "Itinerary"
+    - file.hasLink(this.file)
+formulas:
+  link: file.asLink()
+  day: 'if(!note.Start.isEmpty(), date(note.Start).format("YYYY-MM-DD · ddd"), "Unscheduled")'
+  time: 'if(!note.Start.isEmpty() && date(note.Start).format("HH:mm") != "00:00", date(note.Start).format("HH:mm"), "")'
+  what: 'if(note.Subtype == "Transport", note.Mode + " · " + if(note.Service, note.Service, ""), if(note.Place, note.Place, note.Locale))'
+  cover: 'if(note.Place && note.Place.asFile().properties.Banner, note.Place.asFile().properties.Banner, if(note.Subtype == "Transport" && note.To, note.To.asFile().properties.Banner, if(note.Locale, note.Locale.asFile().properties.Banner, "")))'
+  nights: 'if(note.Subtype == "Stay" && !note.Start.isEmpty() && !note.End.isEmpty(), ((date(note.End) - date(note.Start)) / 86400000).round() + " nights", "")'
+properties:
+  formula.link:
+    displayName: Note
+  formula.what:
+    displayName: What
+  formula.time:
+    displayName: Time
+  formula.nights:
+    displayName: Nights
+views:
+  - type: cards
+    name: Itinerary by Day
+    image: formula.cover
+    filters:
+      and:
+        - '!note.Start.isEmpty()'
+    groupBy:
+      property: formula.day
+      direction: ASC
+    order:
+      - formula.link
+      - formula.what
+      - formula.time
+      - note.Subtype
+    sort:
+      - property: note.Start
+        direction: ASC
+  - type: cards
+    name: Stays
+    image: formula.cover
+    filters:
+      and:
+        - note.Subtype == "Stay"
+    order:
+      - formula.link
+      - formula.what
+      - note.Start
+      - formula.nights
+    sort:
+      - property: note.Start
+        direction: ASC
+  - type: table
+    name: Transport
+    filters:
+      and:
+        - note.Subtype == "Transport"
+    order:
+      - note.Start
+      - note.Mode
+      - note.From
+      - note.To
+      - note.Service
+      - note.Confirmation
+    sort:
+      - property: note.Start
+        direction: ASC
+  - type: cards
+    name: Ideas
+    image: formula.cover
+    filters:
+      and:
+        - note.Start.isEmpty()
+    order:
+      - formula.link
+      - formula.what
+      - note.Subtype

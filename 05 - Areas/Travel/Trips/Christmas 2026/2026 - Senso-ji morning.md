@@ -1,13 +1,13 @@
 ---
-Type: Itinerary
-Subtype: Activity
+Type: "Itinerary"
+Subtype: "Activity"
 Trip: "[[Christmas 2026]]"
 Place: "[[Senso-ji]]"
 Locale: "[[Tokyo, Japan]]"
 Country: "[[Japan]]"
 Start: 2026-12-20T08:00
 End: 2026-12-20T10:00
+location: "35.7148,139.7967"
 ---
-```dataviewjs
-await dv.view("98 - Meta/Views/nav")
+```nav
 ```

@@ -1,10 +1,13 @@
 {
   "enabledCssSnippets": [
-    "columns",
+    "columns-test",
     "full-width",
+    "location-test",
+    "mb-seamless-test",
+    "travel-gallery",
+    "columns",
     "location",
     "nav",
-    "travel-gallery",
     "utilities"
   ],
   "interfaceFontFamily": "",
